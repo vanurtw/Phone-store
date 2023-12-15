@@ -21,13 +21,6 @@ class AbstractProduct(models.Model):
 
     ]
 
-    ColorChoices = [
-        ('BLACK', 'Black'),
-        ('WHITE', 'White'),
-        ('BLUE', 'Blue'),
-        ('BEIGE', 'Beige'),
-    ]
-
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     sale = models.BooleanField(default=False)
@@ -39,7 +32,6 @@ class AbstractProduct(models.Model):
     description = models.TextField()
     manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures')
     memory = models.CharField(max_length=6, choices=MemoryChoices)
-    color = models.CharField(max_length=6, choices=ColorChoices)
     frame = models.CharField(max_length=50)  # korpus
     height = models.DecimalField(max_digits=10, decimal_places=2)
     width = models.DecimalField(max_digits=10, decimal_places=2)
@@ -48,6 +40,22 @@ class AbstractProduct(models.Model):
 
     class Meta:
         abstract = True
+
+
+class ColorCountProduct(models.Model):
+    ColorChoices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+        ('BLUE', 'Blue'),
+        ('BEIGE', 'Beige'),
+    ]
+
+    color = models.CharField(max_length=100, choices=ColorChoices)
+    count = models.PositiveIntegerField()
+    product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
+
+    def __str__(self):
+        return self.color
 
 
 class PhoneProduct(AbstractProduct):

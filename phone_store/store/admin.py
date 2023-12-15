@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Manufacture, PhoneProduct
+from .models import Manufacture, PhoneProduct, ColorCountProduct
 
 
 # Register your models here.
@@ -9,6 +9,11 @@ class ManufactureAdmin(admin.ModelAdmin):
     pass
 
 
+class ColorCountProductInline(admin.StackedInline):
+    model = ColorCountProduct
+    extra = 2
+
+
 @admin.register(PhoneProduct)
 class PhoneProductAdmin(admin.ModelAdmin):
-    pass
+    inlines = [ColorCountProductInline]
