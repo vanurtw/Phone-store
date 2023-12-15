@@ -3,12 +3,16 @@ from django.db import models
 
 # Create your models here.
 class Manufacture(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name='Имя производителя')
     slug = models.SlugField(max_length=200)
     create = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Производитель'
+        verbose_name_plural = 'Производители'
 
 
 class AbstractProduct(models.Model):
@@ -21,22 +25,23 @@ class AbstractProduct(models.Model):
 
     ]
 
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name='Название товара')
     slug = models.SlugField(max_length=255)
-    sale = models.BooleanField(default=False)
-    original_price = models.PositiveIntegerField()
-    discount = models.PositiveIntegerField(default=0)
+    sale = models.BooleanField(default=False, verbose_name='Скидка')
+    original_price = models.PositiveIntegerField(verbose_name='Цена')
+    discount = models.PositiveIntegerField(default=0, verbose_name='Процент скидки')
     price = models.PositiveIntegerField()
-    diagonal = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='media/store/}', blank=True, null=True)
-    description = models.TextField()
-    manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures')
-    memory = models.CharField(max_length=6, choices=MemoryChoices)
-    frame = models.CharField(max_length=50)  # korpus
-    height = models.DecimalField(max_digits=10, decimal_places=2)
-    width = models.DecimalField(max_digits=10, decimal_places=2)
-    Thickness = models.DecimalField(max_digits=10, decimal_places=2)
-    weight = models.DecimalField(max_digits=10, decimal_places=2)
+    diagonal = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Диоганаль')
+    image = models.ImageField(upload_to='media/store/}', blank=True, null=True, verbose_name='Изображение')
+    description = models.TextField(verbose_name='Описание')
+    manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures',
+                                    verbose_name='Производитель')
+    memory = models.CharField(max_length=6, choices=MemoryChoices, verbose_name='Память')
+    frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
+    height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
+    width = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ширина')
+    thickness = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Толщина')
+    weight = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Вес')
 
     class Meta:
         abstract = True
@@ -50,12 +55,16 @@ class ColorCountProduct(models.Model):
         ('BEIGE', 'Beige'),
     ]
 
-    color = models.CharField(max_length=100, choices=ColorChoices)
-    count = models.PositiveIntegerField()
+    color = models.CharField(max_length=100, choices=ColorChoices, verbose_name='Цвет')
+    count = models.PositiveIntegerField(verbose_name='Кол-во')
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
 
     def __str__(self):
         return self.color
+
+    class Meta:
+        verbose_name = 'Тип товара'
+        verbose_name_plural = 'Типы товаров'
 
 
 class PhoneProduct(AbstractProduct):
@@ -72,9 +81,13 @@ class PhoneProduct(AbstractProduct):
         ('NI_MH', 'Ni-MH')
     ]
 
-    display = models.CharField(max_length=20)
-    Connector = models.CharField(max_length=9, choices=ConnectorChoices)
-    Battery_type = models.CharField(max_length=9, choices=BatteryChoices)
+    display = models.CharField(max_length=20, verbose_name='Дисплей')
+    Connector = models.CharField(max_length=9, choices=ConnectorChoices, verbose_name='Тип разъема')
+    Battery_type = models.CharField(max_length=9, choices=BatteryChoices, verbose_name='Тип батареи')
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Телефон'
+        verbose_name_plural = 'Телефоны'
