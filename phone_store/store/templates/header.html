@@ -1,34 +1,42 @@
 {% load static %}
 <header class="header-area section-padding-1">
-        <div class="header-large-device">
-            <div class="container-fluid">
-                <div class="header-ptb">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4">
-                            <div class="search-wrap search-width-1">
+    <div class="header-large-device">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="logo logo-res-lg">
+                        <a href="index.html">
+                            <img src="{% static 'assets/images/logo/logo.png' %}" alt="logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-8">
+                    <div class="main-menu menu-lh-3 main-menu-padding-1 menu-text-black text-center">
+                        <nav>
+                            <ul>
+                                <li><a class="active" href="index.html">HOME</a>
+                                </li>
+                                <li><a href="shop-fullwide.html">SHOP</a>
+                                </li>
+                                <li><a href="blog.html">BLOG</a>
+                                </li>
+                                <li><a href="contact.html">CONTACT</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header-right-wrap header-right-flex hr-mrg-handmade">
 
-                            </div>
+                        <div class="same-style same-style-mrg-dec">
+                            <a href="wishlist.html"><i class="fa fa-heart-o"></i></a>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="logo logo-width text-center">
-                                <a href="index.html">
-                                    <img src="{% static 'assets/images/logo/logo.png' %}" alt="logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="header-right-wrap header-right-flex">
-                                <div class="same-style">
-                                    <a href="wishlist.html"><i class="fa fa-heart-o"></i></a>
-                                </div>
-                                <div class="same-style">
-                                    <a class="cart-active" href="cart.html"><i class="fa fa-cart-arrow-down"></i></a>
-                                </div>
-
-                            </div>
+                        <div class="same-style same-style-mrg-dec">
+                            <a class="cart-active" href="cart.html"><i class="fa fa-cart-arrow-down"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
