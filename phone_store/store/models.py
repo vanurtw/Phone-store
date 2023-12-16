@@ -16,32 +16,22 @@ class Manufacture(models.Model):
 
 
 class AbstractProduct(models.Model):
-    MemoryChoices = [
-        ('M_128', '128GB'),
-        ('M_256', '256 GB'),
-        ('M_512', '512 GB'),
-        ('M_1', '1 TB'),
-        ('M_2', '2 TB'),
-
-    ]
 
     name = models.CharField(max_length=255, verbose_name='Название товара')
     slug = models.SlugField(max_length=255)
     sale = models.BooleanField(default=False, verbose_name='Скидка')
-    original_price = models.PositiveIntegerField(verbose_name='Цена')
     discount = models.PositiveIntegerField(default=0, verbose_name='Процент скидки')
-    price = models.PositiveIntegerField()
     diagonal = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Диоганаль')
-    image = models.ImageField(upload_to='media/store/}', blank=True, null=True, verbose_name='Изображение')
+    image = models.ImageField(upload_to='store/', blank=True, null=True, verbose_name='Изображение')
     description = models.TextField(verbose_name='Описание')
     manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures',
                                     verbose_name='Производитель')
-    memory = models.CharField(max_length=6, choices=MemoryChoices, verbose_name='Память')
     frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
     width = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ширина')
     thickness = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Толщина')
     weight = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Вес')
+    create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     class Meta:
         abstract = True
@@ -54,8 +44,18 @@ class ColorCountProduct(models.Model):
         ('BLUE', 'Blue'),
         ('BEIGE', 'Beige'),
     ]
+    MemoryChoices = [
+        ('M_128', '128GB'),
+        ('M_256', '256 GB'),
+        ('M_512', '512 GB'),
+        ('M_1', '1 TB'),
+        ('M_2', '2 TB'),
+
+    ]
 
     color = models.CharField(max_length=100, choices=ColorChoices, verbose_name='Цвет')
+    memory = models.CharField(max_length=10, choices=MemoryChoices, verbose_name='Память')
+    price = models.PositiveIntegerField(verbose_name='Цена')
     count = models.PositiveIntegerField(verbose_name='Кол-во')
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
 
@@ -87,6 +87,9 @@ class PhoneProduct(AbstractProduct):
 
     def __str__(self):
         return self.name
+
+    def save(self):
+        return super(PhoneProduct, self).save()
 
     class Meta:
         verbose_name = 'Телефон'
