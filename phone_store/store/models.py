@@ -2,6 +2,13 @@ from django.db import models
 
 
 # Create your models here.
+
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(active=True)
+
+
 class Manufacture(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя производителя')
     slug = models.SlugField(max_length=200)
@@ -16,7 +23,6 @@ class Manufacture(models.Model):
 
 
 class AbstractProduct(models.Model):
-
     name = models.CharField(max_length=255, verbose_name='Название товара')
     slug = models.SlugField(max_length=255)
     sale = models.BooleanField(default=False, verbose_name='Скидка')
@@ -32,6 +38,10 @@ class AbstractProduct(models.Model):
     thickness = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Толщина')
     weight = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Вес')
     create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    active = models.BooleanField(default=True)
+
+    objects = models.Manager()
+    published = PublishedManager()
 
     class Meta:
         abstract = True
