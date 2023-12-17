@@ -11,7 +11,13 @@ def home_page(request):
 
 
 def shop_page(request):
-    context = {}
-    products = PhoneProduct.published.all()
+    context = {'chapter': 'shop'}
+    context['type_product'] = request.GET.get('type-product', None)
+    if context['type_product'] == 'laptop':
+        products = []
+    elif context['type_product'] == 'iphone':
+        products = PhoneProduct.published.all()
+    else:
+        products = PhoneProduct.published.all()
     context['products'] = products
     return render(request, 'store/shop.html', context)

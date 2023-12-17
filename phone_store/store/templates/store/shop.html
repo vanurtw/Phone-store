@@ -22,15 +22,21 @@
     <div class="shop-area section-padding-9 pt-120 pb-120">
         <div class="container-fluid">
             <div class="product-tab-list nav mb-60">
-                <a class="active" href="#product-1" data-toggle="tab">
-                    All
-                </a>
-                <a href="">
-                    iPhone
-                </a>
-                <a href="#product-3" data-toggle="tab">
-                    Laptop
-                </a>
+                {% if type_product %}
+                <a href="{% url 'shop' %}">All</a>
+                {% else %}
+                <a href="{% url 'shop' %}" class="active">All</a>
+                {% endif %}
+                {% if type_product == 'iphone' %}
+                <a href="{% url 'shop' %}?type-product=iphone" class="active">iPhone</a>
+                {% else %}
+                <a href="{% url 'shop' %}?type-product=iphone">iPhone</a>
+                {% endif %}
+                {% if type_product == 'laptop' %}
+                <a href="{% url 'shop' %}?type-product=laptop" class="active">Laptop</a>
+                {% else %}
+                <a href="{% url 'shop' %}?type-product=laptop">Laptop</a>
+                {% endif %}
             </div>
             <div class="tab-content jump-3 pt-30">
                 <div id="shop-3" class="tab-pane active padding-55-row-col">
