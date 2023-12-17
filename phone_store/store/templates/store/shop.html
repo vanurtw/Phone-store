@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="slider-area section-padding-1">
+        <div class="container-fluid">
+            <div class="main-slider-active-1   slider-nav-style-1">
+                <div class="single-main-slider slider-animated-1 bg-img slider-height-1 align-items-center custom-d-flex"
+                     style="background-image:url({% static 'assets/images/banner/shop2.jpg' %});">
+                    <div class="row no-gutters width-100-percent">
+                        <div class="col-12">
+                            <div class="main-slider-content-1 slider-pl-1">
+                                <span class="animated">NEW ARRIVAL</span>
+                                <h1 class="animated">IPHONE <br>LAPTOP </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-area section-padding-9 pt-120 pb-120">
+        <div class="container-fluid">
+            <div class="product-tab-list nav mb-60">
+                <a class="active" href="#product-1" data-toggle="tab">
+                    All
+                </a>
+                <a href="">
+                    iPhone
+                </a>
+                <a href="#product-3" data-toggle="tab">
+                    Laptop
+                </a>
+            </div>
+            <div class="tab-content jump-3 pt-30">
+                <div id="shop-3" class="tab-pane active padding-55-row-col">
+                    <div class="row">
+                        {% for product in products%}
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="product-wrap mb-55">
+                                <div class="product-img pro-theme-color-border product-border mb-25">
+                                    <a href="product-details.html">
+                                        <img src="{{product.image.url}}" alt="" style="width:75%">
+                                    </a>
+                                    <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                                    <div class="product-action product-action-position-1 pro-action-theme-color">
+                                        <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                                        <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                                class="fa fa-search-plus"></i></a>
+                                        <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                                        <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h4><a href="product-details.html">Adapt Active Noise Cancelling Headphones</a></h4>
+                                    <div class="product-price">
+                                        <span class="new-price">$59.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="pro-pagination-style text-center">
+                    <ul>
+                        <li><a class="active" href="#">01</a></li>
+                        <li><a href="#">02</a></li>
+                        <li><a href="#">03</a></li>
+                        <li><a href="#">04</a></li>
+                        <li><a href="#">05</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+{% endblock %}

@@ -42,24 +42,18 @@
         <div class="section-padding-1">
             <div class="container-fluid">
                 <div class="product-tab-list nav mb-60">
-                    <a href="#product-2" data-toggle="tab" class="active">
-                        Phones
-                    </a>
-                    <a href="#product-3" data-toggle="tab">
-                        Laptops
-                    </a>
                 </div>
                 <div class="tab-content jump padding-55-row-col">
                     <div id="product-1" class="tab-pane active">
                         <div class="row">
-                            {% for phone in phones %}
+                            {% for product in products %}
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                 <div class="product-wrap mb-55">
                                     <div class="product-img mb-25">
                                         <a href="">
-                                            <img src="{{phone.image.url}}" alt="">
+                                            <img src="{{product.image.url}}" alt="">
                                         </a>
-                                        {% if phone.new_product %}
+                                        {% if product.new_product %}
                                         <span class="badge-black badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
                                         {% endif %}
                                         <div class="product-action product-action-position-1">
@@ -68,9 +62,9 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h4><a href="product-details.html">{{phone.name}}</a></h4>
+                                        <h4><a href="product-details.html">{{product.name}}</a></h4>
                                         <div class="product-price">
-                                            <span class="new-price">{{phone.original_price}}₽</span>
+                                            <span class="new-price">{{product.original_price}}₽</span>
                                         </div>
                                     </div>
                                 </div>
@@ -82,52 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="subscribe-area bg-black pt-70 pb-80 default-mlr-120">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3">
-                    <div class="subscribe-title">
-                        <h3>Stay in touch</h3>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div id="mc_embed_signup" class="subscribe-form subscribe-mrg-1">
-                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
-                              target="_blank" name="mc-embedded-subscribe-form" method="post"
-                              action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                            <div id="mc_embed_signup_scroll" class="mc-form">
-                                <input class="email" type="email" required="" placeholder="Enter your email address..."
-                                       name="EMAIL" value="">
-                                <div class="mc-news" aria-hidden="true">
-                                    <input type="text" value="" tabindex="-1"
-                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                </div>
-                                <div class="clear">
-                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
-                                           value="Subscribe">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="footer-area section-padding-1">
-        <div class="container-fluid">
-
-            <div class="footer-botoom border-top-1">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="copyright text-center copyright-ptb">
-                            <p>© 2020 YOUNG. <a target="_blank" href="https://hasthemes.com/">All rights reserved.</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+   {% include 'footer.html' %}
 </div>
 
 
