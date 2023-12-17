@@ -30,8 +30,8 @@ class AbstractProduct(models.Model):
     diagonal = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Диоганаль')
     image = models.ImageField(upload_to='store/', blank=True, null=True, verbose_name='Изображение')
     description = models.TextField(verbose_name='Описание')
-    manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures',
-                                    verbose_name='Производитель')
+    original_price = models.PositiveIntegerField(verbose_name='Цена')
+    manufacture = models.ForeignKey(Manufacture, on_delete=models.CASCADE, related_name='manufactures', verbose_name='Производитель')
     frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
     width = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ширина')
@@ -39,9 +39,10 @@ class AbstractProduct(models.Model):
     weight = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Вес')
     create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     active = models.BooleanField(default=True)
-
+    new_product = models.BooleanField(default=True)
     objects = models.Manager()
     published = PublishedManager()
+
 
     class Meta:
         abstract = True
