@@ -32,6 +32,14 @@ class Cart(object):
             del self.cart[table_name][product_id]
             self.save()
 
+    def get_total_price(self):
+        total_price = 0
+        product_name = self.cart.keys()
+        for prod_name in product_name:
+            for item in self.cart[prod_name].values():
+                total_price+=item['quantity']*item['price']
+        return total_price
+
     def __iter__(self):
         product_name = self.cart.keys()
         products_item = []
