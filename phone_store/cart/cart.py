@@ -1,5 +1,7 @@
 from django.conf import settings
 from store.models import PhoneProduct, LaptopProduct
+from itertools import chain
+from decimal import Decimal
 
 
 class Cart(object):
@@ -29,6 +31,30 @@ class Cart(object):
         if product_id in self.cart[table_name]:
             del self.cart[table_name][product_id]
             self.save()
+
+    def __iter__(self):
+        product_name = self.cart.keys()
+        products_item = []
+        for prod_name in product_name:
+            if prod_name == 'PhoneProduct':
+                products_ids = self.cart[prod_name].keys()
+                products = PhoneProduct.objects.filter(id__in=products_ids)
+                for product in products:
+                    self.cart[prod_name][str(product.id)]['product'] = product
+                    self.cart[prod_name][str(product.id)]['price'] = product.original_price
+                    quantity = self.cart[prod_name][str(product.id)]['quantity']
+                    self.cart[prod_name][str(product.id)]['total_price'] = product.original_price * quantity
+        for i in product_name:
+            for j in self.cart[i].values():
+                yield j
+
+    def __len__(self):
+        lenght = 0
+        product_name = self.cart.keys()
+        for prod_name in product_name:
+            for item in self.cart[prod_name]:
+                lenght += self.cart[prod_name][item]['quantity']
+        return lenght
 
     def save(self):
         self.session[settings.CART_SESSION_ID] = self.cart

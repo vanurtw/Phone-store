@@ -27,7 +27,5 @@ def shop_page(request):
 
 def aaa(request):
     cart = Cart(request)
-    pr = PhoneProduct.objects.all()[1]
-    # cart.clear()
-    cart.add(pr)
+    pr = PhoneProduct.objects.all()[0]
     return HttpResponse('awdwa')
