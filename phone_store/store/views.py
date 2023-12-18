@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import PhoneProduct
+from cart.cart import Cart
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -21,3 +23,11 @@ def shop_page(request):
         products = PhoneProduct.published.all()
     context['products'] = products
     return render(request, 'store/shop.html', context)
+
+
+def aaa(request):
+    cart = Cart(request)
+    pr = PhoneProduct.objects.all()[1]
+    # cart.clear()
+    cart.add(pr)
+    return HttpResponse('awdwa')
