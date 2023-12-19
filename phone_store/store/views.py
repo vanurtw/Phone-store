@@ -25,8 +25,13 @@ def shop_page(request):
     return render(request, 'store/shop.html', context)
 
 
+def product_details(request, product_slug):
+    product = PhoneProduct.published.get(slug=product_slug)
+    color_product = product.colors.filter(color='BLACK')
+    return render(request, 'store/product-details.html',
+                  {'product': product, 'color_product': color_product, 'chapter': 'shop'})
+
+
 def aaa(request):
     cart = Cart(request)
-    pr = PhoneProduct.objects.all()[0]
-    cart.get_total_price()
     return HttpResponse('awdwa')
