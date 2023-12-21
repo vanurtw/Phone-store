@@ -10,6 +10,14 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(active=True)
 
 
+class Categories(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
 class Manufacture(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя производителя')
     slug = models.SlugField(max_length=200)
@@ -41,6 +49,7 @@ class AbstractProduct(models.Model):
     create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     active = models.BooleanField(default=True)
     new_product = models.BooleanField(default=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
     published = PublishedManager()
 

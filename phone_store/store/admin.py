@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Manufacture, PhoneProduct, ColorCountProduct
+from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories
 
 
 # Register your models here.
@@ -8,6 +8,10 @@ from .models import Manufacture, PhoneProduct, ColorCountProduct
 class ManufactureAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Categories)
+class CategoriesAdmin(admin.ModelAdmin):
+    pass
 
 class ColorCountProductInline(admin.StackedInline):
     model = ColorCountProduct
