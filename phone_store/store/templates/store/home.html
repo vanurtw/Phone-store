@@ -15,7 +15,7 @@
                                 <h1 class="animated">IPHONE <br>Accessories </h1>
                                 <div class="slider-btn-1 btn-hover">
                                     <a class="animated slider-btn-1-bg-white slider-btn-1-ptb bg-black-hover"
-                                       href="product-details.html">Shop now </a>
+                                       href="{% url 'shop' %}">Shop now </a>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,10 @@
                                             <img src="{{product.image.url}}" alt="">
                                         </a>
                                         {% if product.new_product %}
-                                        <span class="badge-black badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                                        {% endif %}
+                                        {% if product.sale %}
+                                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-{{product.discount}}%</span>
                                         {% endif %}
                                         <div class="product-action product-action-position-1">
                                             <a title="Add to Cart" href="#">

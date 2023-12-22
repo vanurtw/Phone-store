@@ -40,6 +40,7 @@ class AbstractProduct(models.Model):
     image = models.ImageField(upload_to='store/', blank=True, null=True, verbose_name='Изображение')
     description = models.TextField(verbose_name='Описание')
     original_price = models.PositiveIntegerField(verbose_name='Цена')
+    discount_price = models.PositiveIntegerField(default=0)
     manufacture = models.ForeignKey(Manufacture, verbose_name='Производитель', on_delete=models.CASCADE)
     frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
@@ -55,6 +56,10 @@ class AbstractProduct(models.Model):
 
     class Meta:
         abstract = True
+
+    def save(self, *args, **kwargs):
+        self.discount_price = self.original_price*(1-self.discount/100)
+        return super(AbstractProduct, self).save(*args, **kwargs)
 
 
 class ColorCountProduct(models.Model):
