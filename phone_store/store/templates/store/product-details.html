@@ -1,0 +1,599 @@
+{% extends 'base.html' %}
+{% load tags_load %}
+
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="shop-area section-padding-2 pb-110">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                    <div class="product-details-tab">
+                        <div class="product-dec-right pro-dec-big-img-slider">
+                            <div class="easyzoom-style">
+                                <div class="easyzoom easyzoom--overlay">
+                                    <a href="{{product.image.url}}">
+                                        <img src="{{product.image.url}}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                    <div class="product-details-wrap pro-dec-res-mrg-top">
+                        <div class="product-details-content pro-dec-content-left">
+
+                            <span>Headphones</span>
+                            <h2 class="uppercase">{{product.name}}</h2>
+                            <div class="pro-dec-info-wrap">
+                                <div class="pro-dec-ratting-wrap">
+                                    <div class="pro-dec-ratting">
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="yellow fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#"> 5 Customer Review</a>
+                                </div>
+                                <div class="pro-dec-stock">
+                                    <ul>
+                                        <li>Brand: <span>{{product.manufacture.name}}</span></li>
+                                        <li class="green">In Stock</li>
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                                            </svg>
+                                            <span>{{prod.count}} Sold</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h3>{{prod.price_discount}}₽</h3>
+                            <div class="product-details-peragraph">
+                                <p>{{product.description}}</p>
+                            </div>
+                            <div class="configurable-wrap">
+                                <div class="configurable-color">
+                                    <span>Color</span>
+                                    <ul>
+                                        {% for item in color_product|distinct:'color' %}
+                                        {% if color == item.color|lower %}
+                                        <li><a href="{{product.get_absolute_url}}?color={{item}}"><span
+                                                title="{{item}}"
+                                                class="{{item|lower}} active-color"></span></a></li>
+                                        {% else %}
+                                        <li><a href="{{product.get_absolute_url}}?color={{item}}"><span
+                                                title="{{item}}" class="{{item|lower}}"></span></a></li>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                                <div class="configurable-size">
+                                    <span>Memory</span>
+                                    <ul>
+                                        {% for item in memory_product%}
+                                        {% if memory == item.memory %}
+                                        <li>
+                                            <a href="{{product.get_absolute_url}}?color={{item|lower}}&memory={{item.memory}}"><span
+                                                    title="{{item.get_memory_display}}"
+                                                    class="swatch-anchor l active-color">{{item.get_memory_display}}</span></a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a href="{{product.get_absolute_url}}?color={{item|lower}}&memory={{item.memory}}"><span
+                                                    title="{{item.get_memory_display}}"
+                                                    class="swatch-anchor l">{{item.get_memory_display}}</span></a>
+                                        </li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-details-action-wrap pro-dec-action-mrg">
+                                <form action="">
+                                    <div class="product-details-quality">
+                                        <input class="cart-plus-minus-box input-quantity" type='number' name="quantity"
+                                               value="1">
+                                        <button class='button-quantity' title="Add to cart" type="submit">Add to cart
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <div class="product-details-wishlist">
+                                    <a title="Add to wishlist" href="#" class="a-wishlist">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-details-meta">
+                                <span>SKU: N/A</span>
+                                <span class="categories">Categories:
+                                    <a href="">{{product.category.name}}</a>
+                                </span>
+                                <span>Tag: <a href="#">Fashion</a>, <a href="#">Dress</a> </span>
+                                <span>Product ID: <a href="#">{{product.id}}</a></span>
+                            </div>
+                            <div class="product-details-info">
+                                <a href="#"><i class=" ti-location-pin "></i>Check Store availability</a>
+                                <a href="#"><i class=" ti-shopping-cart "></i>Delivery and Return</a>
+                                <a href="#"><i class="ti-pin"></i>Ask a Question</a>
+                            </div>
+                            <div class="product-details-social-wrap">
+                                <span>SHARE THIS PRODUCT</span>
+                                <div class="product-details-social">
+                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                    <a class="pinterest" href="#"><i class="fa fa-pinterest-p"></i></a>
+                                    <a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description-review-area section-padding-2 pb-105">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="description-review-wrapper">
+                        <div class="description-review-topbar nav">
+                            <a class="active" data-toggle="tab" href="#des-details1">DESCRIPTIONS</a>
+                            <a data-toggle="tab" href="#des-details2">ADDITIONAL INFORMATION</a>
+                            <a data-toggle="tab" href="#des-details3">Reviews (1)</a>
+                            <a data-toggle="tab" href="#des-details5"> ABOUT BRAND</a>
+                        </div>
+                        <div class="tab-content description-review-bottom">
+                            <div id="des-details1" class="tab-pane active">
+                                <div class="product-description-wrapper">
+                                    <div class="row">
+                                        <div class="product-dec-col-38">
+                                            <div class="pro-details-banner">
+                                                <a href="#"><img
+                                                        src="assets/images/product-details/pro-details-banner.png"
+                                                        alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-dec-col-62">
+                                            <div class="product-dec-content">
+                                                <p>{{product.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="des-details2" class="tab-pane">
+                                <div class="additional-info">
+                                    <ul>
+                                        <li><span>Size</span>L, S, XL, XXL</li>
+                                        <li><span>Brands</span>Airi, Draven, Mango, Valentino, Zara</li>
+                                        <li><span>Color</span> Blue, Brown, Green, Pink, Violet, White</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="des-details3" class="tab-pane ">
+                                <div class="review-wrapper">
+                                    <h2>1 review for Sleeve Button Cowl Neck</h2>
+                                    <div class="single-review">
+                                        <div class="review-img">
+                                            <img src="assets/images/product-details/client-1.jpg" alt="">
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-top-wrap">
+                                                <div class="review-name">
+                                                    <h5><span>John Snow</span> - March 14, 2019</h5>
+                                                </div>
+                                                <div class="review-rating">
+                                                    <i class="yellow fa fa-star"></i>
+                                                    <i class="yellow fa fa-star"></i>
+                                                    <i class="yellow fa fa-star"></i>
+                                                    <i class="yellow fa fa-star"></i>
+                                                    <i class=" fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
+                                                molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.
+                                                Aliquam egestas libero ac turpis pharetra, in vehicula lacus
+                                                scelerisque</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ratting-form-wrapper">
+                                    <span>Add a Review</span>
+                                    <p>Your email address will not be published. Required fields are marked
+                                        <span>*</span></p>
+                                    <div class="ratting-form">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Name <span>*</span></label>
+                                                        <input type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Email <span>*</span></label>
+                                                        <input type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="star-box-wrap">
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                        <div class="single-ratting-star">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="rating-form-style mb-20">
+                                                        <label>Your Review <span>*</span></label>
+                                                        <textarea name="Your Review"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-submit">
+                                                        <input type="submit" value="Submit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="des-details4" class="tab-pane ">
+                                <div class="about-shiping-content">
+                                    <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
+                                        molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.</p>
+                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
+                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
+                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
+                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
+                                        elit.</p>
+                                </div>
+                            </div>
+                            <div id="des-details5" class="tab-pane ">
+                                <div class="pro-dec-brand-wrap">
+                                    <div class="row">
+                                        <div class="ml-auto mr-auto col-lg-10">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-4 col-md-6 col-sm-5">
+                                                    <div class="pro-dec-brand-img text-center">
+                                                        <img src="assets/images/brand-logo/brand-logo-7.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-6 col-sm-7">
+                                                    <div class="pro-dec-brand-content">
+                                                        <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
+                                                            egestas magna molestie a. Proin ac ex maximus, ultrices
+                                                            justo eget, sodales orci. Aliquam egestas libero ac turpis
+                                                            pharetra, in vehicula lacus scelerisque. Vestibulum ut sem
+                                                            laoreet, feugiat tellus at, hendrerit arcu..</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="des-details6" class="tab-pane">
+                                <div class="about-shiping-content">
+                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
+                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
+                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
+                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
+                                        elit.</p>
+                                    <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
+                                        molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam
+                                        egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut
+                                        sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
+                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
+                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
+                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
+                                        elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-product-area section-padding-2 pb-110">
+        <div class="container-fluid">
+            <div class="section-title-12 mb-30">
+                <h2>Frequently Bought Together</h2>
+            </div>
+            <div class="related-product-active owl-carousel">
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-1.jpg" alt="">
+                        </a>
+                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Adapt Active Noise Cancelling Headphones</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$59.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-2.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iPhone 11 Case, Heavy Duty [Military Grade] </a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$20.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-3.jpg" alt="">
+                        </a>
+                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-25%</span>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Libratone Track Air+ True Wireless Active Noise</a></h4>
+                        <div class="product-price">
+                            <span class="old-price">$59.99</span>
+                            <span class="new-price">$35.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-4.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Acer Aspire C24-865-UA91 AIO Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$50.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-5.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$60.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-10.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$60.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-product-area section-padding-2 pb-115">
+        <div class="container-fluid">
+            <div class="section-title-12 mb-30">
+                <h2>RELATED PROUDCTS</h2>
+            </div>
+            <div class="related-product-active owl-carousel">
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-12.jpg" alt="">
+                        </a>
+                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Adapt Active Noise Cancelling Headphones</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$59.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-9.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iPhone 11 Case, Heavy Duty [Military Grade] </a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$20.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-8.jpg" alt="">
+                        </a>
+                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-25%</span>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Libratone Track Air+ True Wireless Active Noise</a></h4>
+                        <div class="product-price">
+                            <span class="old-price">$59.99</span>
+                            <span class="new-price">$35.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-7.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">Acer Aspire C24-865-UA91 AIO Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$50.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-11.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$60.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-img pro-theme-color-border product-border mb-25">
+                        <a href="product-details.html">
+                            <img src="assets/images/product/e-product-img-10.jpg" alt="">
+                        </a>
+                        <div class="product-action product-action-position-1 pro-action-theme-color">
+                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
+                                    class="fa fa-search-plus"></i></a>
+                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
+                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
+                        <div class="product-price">
+                            <span class="new-price">$60.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+</div>
+{% endblock %}

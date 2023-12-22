@@ -13,6 +13,7 @@ class ManufactureAdmin(admin.ModelAdmin):
 class CategoriesAdmin(admin.ModelAdmin):
     pass
 
+
 class ColorCountProductInline(admin.StackedInline):
     model = ColorCountProduct
     extra = 2
@@ -25,3 +26,7 @@ class PhoneProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
     list_filter = ['create', 'colors__memory', 'colors__color']
+
+@admin.register(ColorCountProduct)
+class ColorCountProductAdmin(admin.ModelAdmin):
+    pass

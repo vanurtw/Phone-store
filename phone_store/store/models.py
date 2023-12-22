@@ -40,7 +40,7 @@ class AbstractProduct(models.Model):
     image = models.ImageField(upload_to='store/', blank=True, null=True, verbose_name='Изображение')
     description = models.TextField(verbose_name='Описание')
     original_price = models.PositiveIntegerField(verbose_name='Цена')
-    discount_price = models.PositiveIntegerField(default=0)
+    discount_price = models.PositiveIntegerField()
     manufacture = models.ForeignKey(Manufacture, verbose_name='Производитель', on_delete=models.CASCADE)
     frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
@@ -81,8 +81,13 @@ class ColorCountProduct(models.Model):
     color = models.CharField(max_length=100, choices=ColorChoices, verbose_name='Цвет')
     memory = models.CharField(max_length=10, choices=MemoryChoices, verbose_name='Память')
     price = models.PositiveIntegerField(verbose_name='Цена')
+    price_discount = models.PositiveIntegerField()
     count = models.PositiveIntegerField(verbose_name='Кол-во')
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
+
+    def save(self, *args, **kwargs):
+        self.price_discount = self.price*(1 - self.product.discount/100)
+        return super(ColorCountProduct, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.color
