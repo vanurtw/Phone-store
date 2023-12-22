@@ -50,7 +50,7 @@ class AbstractProduct(models.Model):
     create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     active = models.BooleanField(default=True)
     new_product = models.BooleanField(default=True)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     objects = models.Manager()
     published = PublishedManager()
 

@@ -115,7 +115,7 @@
                             <div class="product-details-meta">
                                 <span>SKU: N/A</span>
                                 <span class="categories">Categories:
-                                    <a href="">{{product.category.name}}</a>
+                                    <a href="{% url 'shop' %}?type-product={{product.category.name}}">{{product.category.name}}</a>
                                 </span>
                                 <span>Tag: <a href="#">Fashion</a>, <a href="#">Dress</a> </span>
                                 <span>Product ID: <a href="#">{{product.id}}</a></span>
@@ -140,459 +140,75 @@
             </div>
         </div>
     </div>
-    <div class="description-review-area section-padding-2 pb-105">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="description-review-wrapper">
-                        <div class="description-review-topbar nav">
-                            <a class="active" data-toggle="tab" href="#des-details1">DESCRIPTIONS</a>
-                            <a data-toggle="tab" href="#des-details2">ADDITIONAL INFORMATION</a>
-                            <a data-toggle="tab" href="#des-details3">Reviews (1)</a>
-                            <a data-toggle="tab" href="#des-details5"> ABOUT BRAND</a>
-                        </div>
-                        <div class="tab-content description-review-bottom">
-                            <div id="des-details1" class="tab-pane active">
-                                <div class="product-description-wrapper">
-                                    <div class="row">
-                                        <div class="product-dec-col-38">
-                                            <div class="pro-details-banner">
-                                                <a href="#"><img
-                                                        src="assets/images/product-details/pro-details-banner.png"
-                                                        alt=""></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-dec-col-62">
-                                            <div class="product-dec-content">
-                                                <p>{{product.description}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="des-details2" class="tab-pane">
-                                <div class="additional-info">
-                                    <ul>
-                                        <li><span>Size</span>L, S, XL, XXL</li>
-                                        <li><span>Brands</span>Airi, Draven, Mango, Valentino, Zara</li>
-                                        <li><span>Color</span> Blue, Brown, Green, Pink, Violet, White</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div id="des-details3" class="tab-pane ">
-                                <div class="review-wrapper">
-                                    <h2>1 review for Sleeve Button Cowl Neck</h2>
-                                    <div class="single-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/product-details/client-1.jpg" alt="">
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="review-top-wrap">
-                                                <div class="review-name">
-                                                    <h5><span>John Snow</span> - March 14, 2019</h5>
-                                                </div>
-                                                <div class="review-rating">
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class=" fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                            <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                                                molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.
-                                                Aliquam egestas libero ac turpis pharetra, in vehicula lacus
-                                                scelerisque</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ratting-form-wrapper">
-                                    <span>Add a Review</span>
-                                    <p>Your email address will not be published. Required fields are marked
-                                        <span>*</span></p>
-                                    <div class="ratting-form">
-                                        <form action="#">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="rating-form-style mb-20">
-                                                        <label>Name <span>*</span></label>
-                                                        <input type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-6">
-                                                    <div class="rating-form-style mb-20">
-                                                        <label>Email <span>*</span></label>
-                                                        <input type="email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="star-box-wrap">
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                        </div>
-                                                        <div class="single-ratting-star">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="rating-form-style mb-20">
-                                                        <label>Your Review <span>*</span></label>
-                                                        <textarea name="Your Review"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-submit">
-                                                        <input type="submit" value="Submit">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="des-details4" class="tab-pane ">
-                                <div class="about-shiping-content">
-                                    <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                                        molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.</p>
-                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
-                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
-                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
-                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
-                                        elit.</p>
-                                </div>
-                            </div>
-                            <div id="des-details5" class="tab-pane ">
-                                <div class="pro-dec-brand-wrap">
-                                    <div class="row">
-                                        <div class="ml-auto mr-auto col-lg-10">
-                                            <div class="row align-items-center">
-                                                <div class="col-lg-4 col-md-6 col-sm-5">
-                                                    <div class="pro-dec-brand-img text-center">
-                                                        <img src="assets/images/brand-logo/brand-logo-7.png" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 col-md-6 col-sm-7">
-                                                    <div class="pro-dec-brand-content">
-                                                        <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at
-                                                            egestas magna molestie a. Proin ac ex maximus, ultrices
-                                                            justo eget, sodales orci. Aliquam egestas libero ac turpis
-                                                            pharetra, in vehicula lacus scelerisque. Vestibulum ut sem
-                                                            laoreet, feugiat tellus at, hendrerit arcu..</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="des-details6" class="tab-pane">
-                                <div class="about-shiping-content">
-                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
-                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
-                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
-                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
-                                        elit.</p>
-                                    <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                                        molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam
-                                        egestas libero ac turpis pharetra, in vehicula lacus scelerisque. Vestibulum ut
-                                        sem laoreet, feugiat tellus at, hendrerit arcu.</p>
-                                    <p>Nunc lacus elit, faucibus ac laoreet sed, dapibus ac mi. Maecenas eu ante a elit
-                                        tempus fermentum. Aliquam commodo tincidunt semper. Phasellus accumsan, justo ac
-                                        mollis pharetra, ex dui pharetra nisl, a scelerisque ipsum nulla ac sem. Cras eu
-                                        risus urna. Duis lorem sapien, congue eget nisl sit amet, rutrum faucibus
-                                        elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="related-product-area section-padding-2 pb-110">
-        <div class="container-fluid">
-            <div class="section-title-12 mb-30">
-                <h2>Frequently Bought Together</h2>
-            </div>
-            <div class="related-product-active owl-carousel">
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-1.jpg" alt="">
-                        </a>
-                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Adapt Active Noise Cancelling Headphones</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$59.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-2.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iPhone 11 Case, Heavy Duty [Military Grade] </a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$20.99</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-3.jpg" alt="">
-                        </a>
-                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-25%</span>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Libratone Track Air+ True Wireless Active Noise</a></h4>
-                        <div class="product-price">
-                            <span class="old-price">$59.99</span>
-                            <span class="new-price">$35.99</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-4.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Acer Aspire C24-865-UA91 AIO Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$50.99</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-5.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$60.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-10.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$60.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
     <div class="related-product-area section-padding-2 pb-115">
         <div class="container-fluid">
             <div class="section-title-12 mb-30">
                 <h2>RELATED PROUDCTS</h2>
             </div>
-            <div class="related-product-active owl-carousel">
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-12.jpg" alt="">
-                        </a>
-                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
+            <div class="related-product-active owl-carousel owl-loaded owl-drag">
+
+
+                <div class="owl-stage-outer">
+                    <div class="owl-stage"
+                         style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4512px;">
+
+
+                        {% for item in related_products %}
+                        <div class="owl-item active" style="width: 302.25px; margin-right: 20px;">
+                            <div class="product-wrap">
+                                <div class="product-img mb-25">
+                                    <a href="{{item.get_absolute_url}}">
+                                        <img src="{{item.image.url}}" alt="" style="width:80%">
+                                    </a>
+                                    {% if item.new_product %}
+                                    <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                                    {% endif %}
+                                    {% if item.sale %}
+                                    <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-{{item.discount}}%</span>
+                                    {% endif %}
+                                    <div class="product-action product-action-position-1">
+                                        <a title="Add to Cart" href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                            </svg>
+                                        </a>
+                                        <a title="Add to Wishlist" href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h4><a href="product-details.html">{{item.name}}</a></h4>
+                                    <div class="product-price">
+                                        <span class="new-price">{{item.original_price}}₽</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Adapt Active Noise Cancelling Headphones</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$59.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-9.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iPhone 11 Case, Heavy Duty [Military Grade] </a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$20.99</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-8.jpg" alt="">
-                        </a>
-                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-25%</span>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Libratone Track Air+ True Wireless Active Noise</a></h4>
-                        <div class="product-price">
-                            <span class="old-price">$59.99</span>
-                            <span class="new-price">$35.99</span>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-7.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">Acer Aspire C24-865-UA91 AIO Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$50.99</span>
-                        </div>
-                    </div>
+                <div class="owl-nav disabled">
+                    <div class="owl-prev">prev</div>
+                    <div class="owl-next">next</div>
                 </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-11.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$60.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-wrap">
-                    <div class="product-img pro-theme-color-border product-border mb-25">
-                        <a href="product-details.html">
-                            <img src="assets/images/product/e-product-img-10.jpg" alt="">
-                        </a>
-                        <div class="product-action product-action-position-1 pro-action-theme-color">
-                            <a title="Add to Cart" href="#"><i class="fa fa-cart-arrow-down"></i></a>
-                            <a data-toggle="modal" data-target="#exampleModal" href="#"><i
-                                    class="fa fa-search-plus"></i></a>
-                            <a title="Add to Wishlist" href="#"><i class="fa fa-heart-o"></i></a>
-                            <a title="Add to Compare" href="#"><i class="fa fa-compress"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-content">
-                        <h4><a href="product-details.html">iBUYPOWER Gaming PC Computer Desktop</a></h4>
-                        <div class="product-price">
-                            <span class="new-price">$60.00</span>
-                        </div>
-                    </div>
+                <div class="owl-dots">
+                    <div class="owl-dot active"><span></span></div>
+                    <div class="owl-dot"><span></span></div>
                 </div>
             </div>
         </div>
     </div>
+
+
     {% include 'footer.html' %}
 
 </div>

@@ -26,16 +26,17 @@ def shop_page(request):
 
 
 def product_details(request, product_slug):
+    context = {}
     product = PhoneProduct.published.get(slug=product_slug)
     color_product = product.colors.all()
     col = request.GET.get('color', color_product[0].color)
     memory_product = color_product.filter(color__icontains=col)
     memory = request.GET.get('memory', memory_product[0].memory)
     prod = memory_product.get(memory=memory)
-    return render(request, 'store/product-details.html',
-                  {'color': col.lower(), 'memory': memory, 'product': product, 'color_product': color_product,
-                   'chapter': 'shop', 'prod':prod,
-                   'memory_product': memory_product})
+    related_products = PhoneProduct.objects.all().order_by('?')[:4]
+    context = {'color': col.lower(), 'memory': memory, 'product': product, 'color_product': color_product,
+               'chapter': 'shop', 'prod': prod, 'memory_product': memory_product, 'related_products': related_products}
+    return render(request, 'store/product-details.html', context=context)
 
 
 def aaa(request):
