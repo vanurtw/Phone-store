@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import PhoneProduct
 from cart.cart import Cart
 from django.http import HttpResponse
@@ -40,11 +40,17 @@ def product_details(request, product_slug):
 
 def cart(request):
     contex = {'chapter': 'None'}
+    cart = Cart(request)
+    contex['cart'] = cart
     return render(request, 'store/cart.html', context=contex)
 
 
 def add_cart(request, id, slug):
-    pass
+    cart = Cart(request)
+    product = PhoneProduct.objects.get(id=id).colors.all().first()
+    quantity = 1
+    cart.add(product)
+    return redirect('shop')
 
 
 def aaa(request):

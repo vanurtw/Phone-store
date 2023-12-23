@@ -16,7 +16,8 @@ class Cart(object):
         if table_name not in self.cart:
             self.cart[table_name] = {}
         if product_id not in self.cart[table_name]:
-            self.cart[table_name][product_id] = {'quantity': 0, 'price': product.original_price}
+            self.cart[table_name][product_id] = {'quantity': 0, 'price': product.price_discount, 'color': product.color,
+                                                 'memory': product.get_memory_display()}
         if update_quantity:
             self.cart[table_name][product_id]['quantity'] = quantity
         else:
