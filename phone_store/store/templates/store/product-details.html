@@ -94,7 +94,8 @@
                                 </div>
                             </div>
                             <div class="product-details-action-wrap pro-dec-action-mrg">
-                                <form action="">
+                                <form action="{% url 'cart_add' product.id product.slug %}?color={{color}}&memory={{memory}}" method="post">
+                                    {% csrf_token %}
                                     <div class="product-details-quality">
                                         <input class="cart-plus-minus-box input-quantity" type='number' name="quantity"
                                                value="1">

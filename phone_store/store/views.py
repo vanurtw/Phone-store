@@ -47,8 +47,13 @@ def cart(request):
 
 def add_cart(request, id, slug):
     cart = Cart(request)
-    product = PhoneProduct.objects.get(id=id).colors.all().first()
-    quantity = 1
+    cart.clear()
+    if request.method == 'POST':
+        color = request.GET.get('color')
+        memory = request.GET.get('memory')
+        product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
+    else:
+        product = PhoneProduct.objects.get(id=id).colors.all().first()
     cart.add(product)
     return redirect('shop')
 
