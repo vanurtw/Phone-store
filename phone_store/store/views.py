@@ -47,17 +47,19 @@ def cart(request):
 
 def add_cart(request, id, slug):
     cart = Cart(request)
-    cart.clear()
     if request.method == 'POST':
         color = request.GET.get('color')
         memory = request.GET.get('memory')
+        quantity = request.POST.get('quantity')
         product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
+        cart.add(product, quantity=quantity, update_quantity=True)
     else:
         product = PhoneProduct.objects.get(id=id).colors.all().first()
-    cart.add(product)
+        cart.add(product)
     return redirect('shop')
 
 
 def aaa(request):
     cart = Cart(request)
+    cart.clear()
     return HttpResponse('awdwa')
