@@ -13,3 +13,8 @@ def distinct(qs, param):
             queryset.append(item)
             dic_queryset[atribute] = True
     return queryset
+
+
+@register.inclusion_tag('product_header.html')
+def product_header(header):
+    return {'prod_header':header}
