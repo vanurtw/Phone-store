@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="breadcrumb-area section-padding-1 bg-gray breadcrumb-ptb-1">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <div class="breadcrumb-title">
+                    <h2>Empty Cart</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- empty-cart start -->
+    <div class="empty-cart-area pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="empty-cart-content text-center">
+                        <img src="{% static 'assets/images/logo/logo.png' %}" alt="logo">
+                        <h3>Your cart is currently empty.</h3>
+                        <div class="empty-cart-btn">
+                            <a href="{% url 'shop' %}">Return To Shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+{% endblock %}
+

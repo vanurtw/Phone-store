@@ -30,7 +30,6 @@ def add_cart(request, id, slug):
 
 
 def delete_cart(request, id):
-
     cart = Cart(request)
     product = ColorCountProduct.objects.get(id=id)
     cart.remove(product)

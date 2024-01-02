@@ -16,8 +16,8 @@ class Cart(object):
         memory = product.get_memory_display()
         if table_name not in self.cart:
             self.cart[table_name] = {}
-        if f'{product_id}_{memory}' not in self.cart[table_name]:
-            self.cart[table_name][f'{product_id}_{memory}'] = {'id': product_id, 'quantity': 0,
+        if product_id not in self.cart[table_name]:
+            self.cart[table_name][product_id] = {'id': product_id, 'quantity': 0,
                                                                'price': product.price_discount,
                                                                'color': product.color,
                                                                'memory': memory,
@@ -25,7 +25,7 @@ class Cart(object):
                                                                'img': product.product.image.url,
                                                                'prod_slug': product.product.slug,
                                                                }
-        self.cart[table_name][f'{product_id}_{memory}']['quantity'] += quantity
+        self.cart[table_name][product_id]['quantity'] += quantity
         self.save()
 
     def remove(self, product):

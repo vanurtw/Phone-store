@@ -38,7 +38,7 @@
                                         {{item}}a
                                         <tr>
                                             <td class="product-remove">
-                                                <a href="">
+                                                <a href="{% url 'cart_delete' item.id %}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -47,9 +47,9 @@
                                                 </a>
                                             </td>
                                             <td class="product-img">
-                                                <a href=" "><img src="{{item.img}}" alt="" style="width: 80%;"></a>
+                                                <a href="{% url 'product_details' item.prod_slug %}"><img src="{{item.img}}" alt="" style="width: 80%;"></a>
                                             </td>
-                                            <td class="product-name"><a href=" ">{{item.name}} </a></td>
+                                            <td class="product-name"><a href="{% url 'product_details' item.prod_slug %}">{{item.name}} </a></td>
                                             <td class="product-price"><span class="amount">₽{{item.price}}</span></td>
                                             <td class="cart-quality">
                                                 <div class="product-details-quality quality-width-cart">
