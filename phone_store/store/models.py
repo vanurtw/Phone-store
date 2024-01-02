@@ -33,7 +33,7 @@ class Manufacture(models.Model):
 
 class AbstractProduct(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название товара')
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     sale = models.BooleanField(default=False, verbose_name='Скидка')
     discount = models.PositiveIntegerField(default=0, verbose_name='Процент скидки')
     diagonal = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Диоганаль')
