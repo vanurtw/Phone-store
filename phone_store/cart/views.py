@@ -22,7 +22,7 @@ def add_cart(request, id, slug):
         memory = request.GET.get('memory')
         quantity = request.POST.get('quantity')
         product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
-        cart.add(product, quantity=quantity, update_quantity=True)
+        cart.add(product, quantity=int(quantity), update_quantity=True)
     else:
         product = PhoneProduct.objects.get(id=id).colors.all().first()
         cart.add(product)

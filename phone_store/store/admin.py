@@ -27,6 +27,7 @@ class PhoneProductAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ['create', 'colors__memory', 'colors__color']
 
+
 @admin.register(ColorCountProduct)
 class ColorCountProductAdmin(admin.ModelAdmin):
     pass

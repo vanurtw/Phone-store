@@ -13,18 +13,19 @@ class Cart(object):
     def add(self, product, quantity=1, update_quantity=False):
         product_id = str(product.id)
         table_name = product._meta.object_name
+        memory = product.get_memory_display()
         if table_name not in self.cart:
             self.cart[table_name] = {}
-        if product_id not in self.cart[table_name]:
-            self.cart[table_name][product_id] = {'id': product_id, 'quantity': 0, 'price': product.price_discount,
-                                                 'color': product.color,
-                                                 'memory': product.get_memory_display(), 'name': product.product.name,
-                                                 'img':product.product.image.url
-                                                 }
-        if update_quantity:
-            self.cart[table_name][product_id]['quantity'] = quantity
-        else:
-            self.cart[table_name][product_id]['quantity'] += 1
+        if f'{product_id}_{memory}' not in self.cart[table_name]:
+            self.cart[table_name][f'{product_id}_{memory}'] = {'id': product_id, 'quantity': 0,
+                                                               'price': product.price_discount,
+                                                               'color': product.color,
+                                                               'memory': memory,
+                                                               'name': product.product.name,
+                                                               'img': product.product.image.url,
+                                                               'prod_slug': product.product.slug,
+                                                               }
+        self.cart[table_name][f'{product_id}_{memory}']['quantity'] += quantity
         self.save()
 
     def remove(self, product):
@@ -45,14 +46,9 @@ class Cart(object):
     def __iter__(self):
         product_name = self.cart.keys()
         for prod_name in product_name:
-            if prod_name == 'ColorCountProduct':
-                products_ids = self.cart[prod_name].keys()
-                products = ColorCountProduct.objects.filter(id__in=products_ids)
-                for product in products:
-                    self.cart[prod_name][str(product.id)]['product'] = product
-                    # self.cart[prod_name][str(product.id)]['price'] = product.original_price
-                    quantity = self.cart[prod_name][str(product.id)]['quantity']
-                    self.cart[prod_name][str(product.id)]['total_price'] = product.price_discount * int(quantity)
+            for item in self.cart[prod_name]:
+                unit = self.cart[prod_name][item]
+                unit['total_price'] = int(unit['quantity']) * unit['price']
         for i in product_name:
             for j in self.cart[i].values():
                 yield j
