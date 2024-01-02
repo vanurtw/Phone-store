@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="main-wrapper">
@@ -37,7 +38,7 @@
                                         {{item}}
                                         <tr>
                                             <td class="product-remove">
-                                                <a href="{% url 'delete_product_cart' %}">
+                                                <a href="{% url 'delete_product_cart' item.id %}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -46,7 +47,7 @@
                                                 </a>
                                             </td>
                                             <td class="product-img">
-                                                <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                                                <a href="#"><img src="{{item.img}}" alt="" style="width: 80%;"></a>
                                             </td>
                                             <td class="product-name"><a href="#">{{item.name}} </a></td>
                                             <td class="product-price"><span class="amount">₽{{item.price}}</span></td>
@@ -61,25 +62,6 @@
                                             <td class="product-total"><span>₽{{item.total_price}}</span></td>
                                         </tr>
                                         {% endfor %}
-                                        <tr>
-                                            <td class="product-remove">
-                                                <a href="#"><i class=" ti-close "></i></a>
-                                            </td>
-                                            <td class="product-img">
-                                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Noise Cancelling Headphones</a></td>
-                                            <td class="product-price"><span class="amount">$26.00</span></td>
-                                            <td class="cart-quality">
-                                                <div class="product-details-quality quality-width-cart">
-                                                    <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                               value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="product-total"><span>$110.00</span></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

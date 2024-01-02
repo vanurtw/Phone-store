@@ -18,7 +18,9 @@ class Cart(object):
         if product_id not in self.cart[table_name]:
             self.cart[table_name][product_id] = {'id': product_id, 'quantity': 0, 'price': product.price_discount,
                                                  'color': product.color,
-                                                 'memory': product.get_memory_display(), 'name': product.product.name}
+                                                 'memory': product.get_memory_display(), 'name': product.product.name,
+                                                 'img':product.product.image.url
+                                                 }
         if update_quantity:
             self.cart[table_name][product_id]['quantity'] = quantity
         else:

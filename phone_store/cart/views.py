@@ -2,15 +2,17 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from cart.cart import Cart
-from store.models import PhoneProduct
+from store.models import PhoneProduct, ColorCountProduct
 
 
 # Create your views here.
 def cart(request):
     contex = {'chapter': 'None'}
     cart = Cart(request)
-    contex['cart'] = cart
-    return render(request, 'cart/cart.html', context=contex)
+    if cart:
+        contex['cart'] = cart
+        return render(request, 'cart/cart.html', context=contex)
+    return render(request, 'cart/empty-cart.html', context=contex)
 
 
 def add_cart(request, id, slug):
@@ -27,8 +29,12 @@ def add_cart(request, id, slug):
     return redirect('shop')
 
 
-def product_delete(request, product_id):
-    pass
+def delete_cart(request, id):
+
+    cart = Cart(request)
+    product = ColorCountProduct.objects.get(id=id)
+    cart.remove(product)
+    return redirect('cart')
 
 
 def aaa(request):
