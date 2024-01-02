@@ -10,7 +10,6 @@ def cart(request):
     contex = {'chapter': 'None'}
     cart = Cart(request)
     if cart:
-        contex['cart'] = cart
         return render(request, 'cart/cart.html', context=contex)
     return render(request, 'cart/empty-cart.html', context=contex)
 
@@ -36,7 +35,8 @@ def delete_cart(request, id):
     return redirect('cart')
 
 
-def aaa(request):
+def cart_clear(request):
     cart = Cart(request)
     cart.clear()
-    return HttpResponse('awdwa')
+    return redirect('cart')
+

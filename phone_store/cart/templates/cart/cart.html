@@ -28,6 +28,7 @@
                                             <th></th>
                                             <th></th>
                                             <th>Product</th>
+                                            <th>Memory</th>
                                             <th> Price</th>
                                             <th>Quantity</th>
                                             <th>total</th>
@@ -35,7 +36,7 @@
                                         </thead>
                                         <tbody>
                                         {% for item in cart%}
-                                        {{item}}a
+
                                         <tr>
                                             <td class="product-remove">
                                                 <a href="{% url 'cart_delete' item.id %}">
@@ -47,19 +48,19 @@
                                                 </a>
                                             </td>
                                             <td class="product-img">
-                                                <a href="{% url 'product_details' item.prod_slug %}"><img src="{{item.img}}" alt="" style="width: 80%;"></a>
+                                                <a href="{% url 'product_details' item.prod_slug %}"><img
+                                                        src="{{item.img}}" alt="" style="width: 80%;"></a>
                                             </td>
-                                            <td class="product-name"><a href="{% url 'product_details' item.prod_slug %}">{{item.name}} </a></td>
+                                            <td class="product-name"><a href="{% url 'product_details' item.prod_slug %}" style="font-size: 110%;">{{item.name}}</a><br>
+                                                {{item.color}}
+                                            </td>
+                                            <td class="product-price"><span>{{item.memory}} </span>
+                                            </td>
+
                                             <td class="product-price"><span class="amount">₽{{item.price}}</span></td>
-                                            <td class="cart-quality">
-                                                <div class="product-details-quality quality-width-cart">
-                                                    <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                               value="{{item.quantity}}">
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td class="product-price"><span style="padding-left: 20px;">{{item.quantity}} </span>
                                             <td class="product-total"><span>₽{{item.total_price}}</span></td>
+
                                         </tr>
                                         {% endfor %}
                                         </tbody>
@@ -71,8 +72,8 @@
                                         <button class="coupon-btn" type="submit">Apply coupon</button>
                                     </div>
                                     <div class="cart-clear">
-                                        <a href="#">Clear Cart</a>
-                                        <a class="update-cart" href="#">Update cart</a>
+                                        <a href="{% url 'cart_clear' %}">Clear Cart</a>
+<!--                                        <a class="update-cart" href="#">Update cart</a>-->
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@
                                     <h4>Cart Totals</h4>
                                     <div class="grand-total-content">
                                         <ul>
-                                            <li>Subtotal <span> $87.00</span></li>
+                                            <li>Subtotal <span> ₽{{cart.get_total_price}}</span></li>
                                             <li>Shipping
                                                 <ul>
                                                     <li><input type="radio" name="shipping" value="info"
