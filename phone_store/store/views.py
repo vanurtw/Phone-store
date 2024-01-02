@@ -36,30 +36,3 @@ def product_details(request, product_slug):
     context = {'color': col.lower(), 'memory': memory, 'product': product, 'color_product': color_product,
                'chapter': 'shop', 'prod': prod, 'memory_product': memory_product, 'related_products': related_products}
     return render(request, 'store/product-details.html', context=context)
-
-
-def cart(request):
-    contex = {'chapter': 'None'}
-    cart = Cart(request)
-    contex['cart'] = cart
-    return render(request, 'store/cart.html', context=contex)
-
-
-def add_cart(request, id, slug):
-    cart = Cart(request)
-    if request.method == 'POST':
-        color = request.GET.get('color')
-        memory = request.GET.get('memory')
-        quantity = request.POST.get('quantity')
-        product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
-        cart.add(product, quantity=quantity, update_quantity=True)
-    else:
-        product = PhoneProduct.objects.get(id=id).colors.all().first()
-        cart.add(product)
-    return redirect('shop')
-
-
-def aaa(request):
-    cart = Cart(request)
-    cart.clear()
-    return HttpResponse('awdwa')
