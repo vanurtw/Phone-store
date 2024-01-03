@@ -20,6 +20,7 @@ class Categories(models.Model):
 
 class Manufacture(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя производителя')
+    description = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=200)
     create = models.DateTimeField(auto_now_add=True)
 
@@ -112,8 +113,8 @@ class PhoneProduct(AbstractProduct):
     ]
 
     display = models.CharField(max_length=20, verbose_name='Дисплей')
-    Connector = models.CharField(max_length=9, choices=ConnectorChoices, verbose_name='Тип разъема')
-    Battery_type = models.CharField(max_length=9, choices=BatteryChoices, verbose_name='Тип батареи')
+    connector = models.CharField(max_length=9, choices=ConnectorChoices, verbose_name='Тип разъема')
+    battery_type = models.CharField(max_length=9, choices=BatteryChoices, verbose_name='Тип батареи')
 
     def __str__(self):
         return self.name

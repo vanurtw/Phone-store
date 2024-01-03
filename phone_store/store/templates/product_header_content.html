@@ -2,13 +2,7 @@
 <div id="des-details1" class="tab-pane active">
     <div class="product-description-wrapper">
         <div class="row">
-            <div class="product-dec-col-38">
-                <div class="pro-details-banner">
-                    <a href="#"><img
-                            src="assets/images/product-details/pro-details-banner.png"
-                            alt=""></a>
-                </div>
-            </div>
+
             <div class="product-dec-col-62">
                 <div class="product-dec-content">
                     <p>{{product.description}}</p>
@@ -29,15 +23,24 @@
 {% endif %}
 
 {% if prod_header == 'additional-information' %}
-awdwad
+
 <div id="des-details2" class="tab-pane active">
+    <div class="product-dec-col-62">
     <div class="additional-info">
         <ul>
-            <li><span>Size</span>L, S, XL, XXL</li>
-            <li><span>Brands</span>Airi, Draven, Mango, Valentino, Zara</li>
-            <li><span>Color</span> Blue, Brown, Green, Pink, Violet, White</li>
+            <li><span>Name</span>{{product.name}}</li>
+            <li><span>Brands</span>{{product.manufacture.name}}</li>
+            <li><span>Diagonal</span> {{product.diagonal}} mm</li>
+            <li><span>Frame</span> {{product.frame}}</li>
+            <li><span>Height</span> {{product.height}} mm</li>
+            <li><span>Width</span> {{product.width}} mm</li>
+            <li><span>Thickness</span> {{product.thickness}} mm</li>
+            <li><span>Weight</span> {{product.weight}} gram</li>
+            <li><span>Display</span>{{product.display}}</li>
+            <li><span>Connector</span>{{product.connector}}</li>
+            <li><span>Battery type</span>{{product.battery_type}}</li>
         </ul>
-    </div>
+    </div></div>
 </div>
 {% endif %}
 
