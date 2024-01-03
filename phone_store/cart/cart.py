@@ -36,6 +36,7 @@ class Cart(object):
             self.save()
 
     def get_total_price(self):
+
         total_price = 0
         product_name = self.cart.keys()
         for prod_name in product_name:

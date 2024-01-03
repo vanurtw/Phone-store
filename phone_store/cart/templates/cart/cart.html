@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <form action="#">
+                    <form action="{% url 'cart_coupon' %}" method="post">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-lg-8">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="discount-code">
-                                        <input type="text" required="" name="name" placeholder="Enter your coupon code">
+                                        <input type="text" required="" name="coupon" placeholder="Enter your coupon code">
                                         <button class="coupon-btn" type="submit">Apply coupon</button>
                                     </div>
                                     <div class="cart-clear">

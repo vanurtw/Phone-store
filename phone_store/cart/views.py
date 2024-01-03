@@ -40,3 +40,6 @@ def cart_clear(request):
     cart.clear()
     return redirect('cart')
 
+
+def cart_coupon(request):
+    return HttpResponse('ok')
