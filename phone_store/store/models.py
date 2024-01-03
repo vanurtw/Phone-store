@@ -21,6 +21,7 @@ class Categories(models.Model):
 class Manufacture(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя производителя')
     description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='manufactures/', blank=True, null=True)
     slug = models.SlugField(max_length=200)
     create = models.DateTimeField(auto_now_add=True)
 
