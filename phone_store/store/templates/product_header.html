@@ -13,11 +13,6 @@
 {% else %}
 <a data-toggle="tab" href="{{product.get_absolute_url}}?prod-header=reviews" class="">Reviews (1)</a>
 {% endif %}
-{% if prod_header == 'vendor-info' %}
-<a data-toggle="tab" href="#des-details4" class="active disabled">VENDOR INFO</a>
-{% else %}
-<a data-toggle="tab" href="{{product.get_absolute_url}}?prod-header=vendor-info" class="">VENDOR INFO</a>
-{% endif %}
 {% if prod_header == 'about-brand' %}
 <a data-toggle="tab" href="#des-details5" class="active disabled"> ABOUT BRAND</a>
 {% else %}

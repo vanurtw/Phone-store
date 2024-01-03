@@ -15,6 +15,12 @@ def distinct(qs, param):
     return queryset
 
 
-@register.inclusion_tag('product_header.html')
-def product_header(header):
-    return {'prod_header':header}
+@register.inclusion_tag('product_header.html', takes_context=True)
+def product_header(context):
+    return {'prod_header': context['prod_header']}
+
+
+@register.inclusion_tag('product_header_content.html', takes_context=True)
+def product_header_content(context):
+    return {'prod_header': context['prod_header'], 'product': context['product'],
+            'color_product': context['color_product']}
