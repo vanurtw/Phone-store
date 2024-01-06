@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from cart.cart import Cart
 from store.models import PhoneProduct, ColorCountProduct
+from .models import Coupon
 
 
 # Create your views here.
@@ -42,4 +43,10 @@ def cart_clear(request):
 
 
 def cart_coupon(request):
-    return HttpResponse('ok')
+    coupon = request.POST.get('coupon')
+    coupon = Coupon.coupon_active.filter(coupon=coupon).first()
+    if coupon:
+        cart = Cart(request)
+        cart.set_coupon(coupon)
+        c = cart.get_total_price()
+    return redirect('cart')
