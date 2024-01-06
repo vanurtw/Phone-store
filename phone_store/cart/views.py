@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from datetime import datetime
 from cart.cart import Cart
 from store.models import PhoneProduct, ColorCountProduct
 from .models import Coupon
+from django.utils import timezone
 
 
 # Create your views here.
@@ -43,10 +44,10 @@ def cart_clear(request):
 
 
 def cart_coupon(request):
+    data = datetime.now()
     coupon = request.POST.get('coupon')
-    coupon = Coupon.coupon_active.filter(coupon=coupon).first()
+    coupon = Coupon.coupon_active.filter(coupon=coupon, start_date__lte=data, end_date__gte=data).first()
     if coupon:
         cart = Cart(request)
         cart.set_coupon(coupon)
-        c = cart.get_total_price()
     return redirect('cart')

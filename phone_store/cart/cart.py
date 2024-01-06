@@ -7,9 +7,8 @@ class Cart(object):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID, None)
         if not cart:
-            cart = self.session[settings.CART_SESSION_ID] = {'discount':0}
+            cart = self.session[settings.CART_SESSION_ID] = {'discount': 0}
         self.cart = cart
-
 
     def add(self, product, quantity=1, update_quantity=False):
         product_id = str(product.id)
@@ -46,8 +45,8 @@ class Cart(object):
         for prod_name in product_name:
             for item in self.cart[prod_name].values():
                 total_price += item['quantity'] * item['price']
-        total_price = total_price*(1-self.cart['discount']/100)
-        return total_price
+        total_price = total_price * (1 - self.cart['discount'] / 100)
+        return round(total_price)
 
     def __iter__(self):
         product_name = self.__product_name()
