@@ -10,7 +10,7 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {'discount': 0}
         self.cart = cart
 
-    def add(self, product, quantity=1, update_quantity=False):
+    def add(self, product, quantity=1):
         product_id = str(product.id)
         table_name = product._meta.object_name
         memory = product.get_memory_display()
@@ -41,15 +41,18 @@ class Cart(object):
 
     def get_total_price(self):
         total_price = 0
-        product_name = self.__product_name()
+        product_name = self._product_name()
         for prod_name in product_name:
             for item in self.cart[prod_name].values():
                 total_price += item['quantity'] * item['price']
-        total_price = total_price * (1 - self.cart['discount'] / 100)
+        return total_price
+
+    def total_price(self):
+        total_price = self.get_total_price() * (1 - self.cart['discount'] / 100)
         return round(total_price)
 
     def __iter__(self):
-        product_name = self.__product_name()
+        product_name = self._product_name()
         for prod_name in product_name:
             for item in self.cart[prod_name]:
                 unit = self.cart[prod_name][item]
@@ -60,7 +63,7 @@ class Cart(object):
 
     def __len__(self):
         lenght = 0
-        product_name = self.__product_name()
+        product_name = self._product_name()
         for prod_name in product_name:
             for item in self.cart[prod_name]:
                 lenght += int(self.cart[prod_name][item]['quantity'])
@@ -74,6 +77,6 @@ class Cart(object):
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
 
-    def __product_name(self):
+    def _product_name(self):
         product_name = self.cart.keys()
         return [i for i in product_name if i != 'discount']

@@ -83,18 +83,19 @@
                                     <div class="grand-total-content">
                                         <ul>
                                             <li>Subtotal <span> ₽{{cart.get_total_price}}</span></li>
-                                            <li>Shipping
-                                                <ul>
-                                                    <li><input type="radio" name="shipping" value="info"
-                                                               checked="checked">Flat rate: $10
-                                                    </li>
-                                                    <li><input type="radio" name="shipping" value="info2">Free shipping
-                                                    </li>
-                                                    <li><input type="radio" name="shipping" value="info3">Local pickup
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>Total Price <span>$87.00</span></li>
+                                            <li>Coupon<span>{{cart.cart.discount}}%</span></li>
+<!--                                            <li>Shipping-->
+<!--                                                <ul>-->
+<!--                                                    <li><input type="radio" name="shipping" value="info"-->
+<!--                                                               checked="checked">Flat rate: $10-->
+<!--                                                    </li>-->
+<!--                                                    <li><input type="radio" name="shipping" value="info2">Free shipping-->
+<!--                                                    </li>-->
+<!--                                                    <li><input type="radio" name="shipping" value="info3">Local pickup-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                            </li>-->
+                                            <li>Total Price <span>₽{{cart.total_price}}</span></li>
                                         </ul>
                                     </div>
                                     <div class="grand-btn">
