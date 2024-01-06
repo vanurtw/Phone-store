@@ -2,6 +2,11 @@
 {% load static %}
 
 {% block content %}
+{% if messages %}
+{% for i in messages %}
+{{i.level}}
+{% endfor %}
+{% endif %}
 <div class="main-wrapper">
     <div class="breadcrumb-area section-padding-1 bg-gray breadcrumb-ptb-1">
         <div class="container-fluid">

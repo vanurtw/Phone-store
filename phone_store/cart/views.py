@@ -5,6 +5,7 @@ from cart.cart import Cart
 from store.models import PhoneProduct, ColorCountProduct
 from .models import Coupon
 from django.utils import timezone
+from django.contrib import messages
 
 
 # Create your views here.
@@ -50,4 +51,5 @@ def cart_coupon(request):
     if coupon:
         cart = Cart(request)
         cart.set_coupon(coupon)
+    messages.add_message(request, messages.INFO, 'Hello')
     return redirect('cart')
