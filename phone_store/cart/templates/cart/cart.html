@@ -2,11 +2,6 @@
 {% load static %}
 
 {% block content %}
-{% if messages %}
-{% for i in messages %}
-{{i.level}}
-{% endfor %}
-{% endif %}
 <div class="main-wrapper">
     <div class="breadcrumb-area section-padding-1 bg-gray breadcrumb-ptb-1">
         <div class="container-fluid">
@@ -22,6 +17,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    {% if messages %}
+                    {% for i in messages %}
+                    <p class="{{i.tags}}">{{i}}</p>
+                    {% endfor %}
+                    {% endif %}
                     <form action="{% url 'cart_coupon' %}" method="post">
                         {% csrf_token %}
                         <div class="row">
@@ -56,7 +56,9 @@
                                                 <a href="{% url 'product_details' item.prod_slug %}"><img
                                                         src="{{item.img}}" alt="" style="width: 80%;"></a>
                                             </td>
-                                            <td class="product-name"><a href="{% url 'product_details' item.prod_slug %}" style="font-size: 110%;">{{item.name}}</a><br>
+                                            <td class="product-name"><a
+                                                    href="{% url 'product_details' item.prod_slug %}"
+                                                    style="font-size: 110%;">{{item.name}}</a><br>
                                                 {{item.color}}
                                             </td>
                                             <td class="product-price"><span>{{item.memory}} </span>
@@ -73,12 +75,13 @@
                                 </div>
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="discount-code">
-                                        <input type="text" required="" name="coupon" placeholder="Enter your coupon code">
+                                        <input type="text" required="" name="coupon"
+                                               placeholder="Enter your coupon code">
                                         <button class="coupon-btn" type="submit">Apply coupon</button>
                                     </div>
                                     <div class="cart-clear">
                                         <a href="{% url 'cart_clear' %}">Clear Cart</a>
-<!--                                        <a class="update-cart" href="#">Update cart</a>-->
+                                        <!--                                        <a class="update-cart" href="#">Update cart</a>-->
                                     </div>
                                 </div>
                             </div>
@@ -89,17 +92,17 @@
                                         <ul>
                                             <li>Subtotal <span> ₽{{cart.get_total_price}}</span></li>
                                             <li>Coupon<span>{{cart.cart.discount}}%</span></li>
-<!--                                            <li>Shipping-->
-<!--                                                <ul>-->
-<!--                                                    <li><input type="radio" name="shipping" value="info"-->
-<!--                                                               checked="checked">Flat rate: $10-->
-<!--                                                    </li>-->
-<!--                                                    <li><input type="radio" name="shipping" value="info2">Free shipping-->
-<!--                                                    </li>-->
-<!--                                                    <li><input type="radio" name="shipping" value="info3">Local pickup-->
-<!--                                                    </li>-->
-<!--                                                </ul>-->
-<!--                                            </li>-->
+                                            <!--                                            <li>Shipping-->
+                                            <!--                                                <ul>-->
+                                            <!--                                                    <li><input type="radio" name="shipping" value="info"-->
+                                            <!--                                                               checked="checked">Flat rate: $10-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                    <li><input type="radio" name="shipping" value="info2">Free shipping-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                    <li><input type="radio" name="shipping" value="info3">Local pickup-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                </ul>-->
+                                            <!--                                            </li>-->
                                             <li>Total Price <span>₽{{cart.total_price}}</span></li>
                                         </ul>
                                     </div>

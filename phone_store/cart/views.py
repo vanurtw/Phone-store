@@ -24,7 +24,7 @@ def add_cart(request, id, slug):
         memory = request.GET.get('memory')
         quantity = request.POST.get('quantity')
         product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
-        cart.add(product, quantity=int(quantity), update_quantity=True)
+        cart.add(product, quantity=int(quantity))
     else:
         product = PhoneProduct.objects.get(id=id).colors.all().first()
         cart.add(product)
@@ -51,5 +51,7 @@ def cart_coupon(request):
     if coupon:
         cart = Cart(request)
         cart.set_coupon(coupon)
-    messages.add_message(request, messages.INFO, 'Hello')
+        messages.success(request, 'Купон был применен')
+    else:
+        messages.error(request, 'Купон не действителен')
     return redirect('cart')
