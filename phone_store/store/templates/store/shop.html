@@ -43,45 +43,45 @@
                     <div class="row">
                         {% for product in products%}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                                <div class="product-wrap mb-55">
-                                    <div class="product-img mb-25">
-                                        <a href="{{product.get_absolute_url}}">
-                                            <img src="{{product.image.url}}" alt="">
+                            <div class="product-wrap mb-55">
+                                <div class="product-img mb-25">
+                                    <a href="{{product.get_absolute_url}}">
+                                        <img src="{{product.image.url}}" alt="">
+                                    </a>
+                                    {% if product.new_product %}
+                                    <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
+                                    {% endif %}
+                                    {% if product.sale %}
+                                    <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-{{product.discount}}%</span>
+                                    {% endif %}
+                                    <div class="product-action product-action-position-1">
+                                        <a title="Add to Cart" href="{% url 'cart_add' product.id product.slug %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                            </svg>
                                         </a>
-                                        {% if product.new_product %}
-                                        <span class="badge-green badge-right-20 badge-top-20 badge-ptb-1">NEW</span>
-                                        {% endif %}
-                                        {% if product.sale %}
-                                        <span class="badge-theme-color badge-right-20 badge-top-20 badge-ptb-1">-{{product.discount}}%</span>
-                                        {% endif %}
-                                        <div class="product-action product-action-position-1">
-                                            <a title="Add to Cart" href="{% url 'cart_add' product.id product.slug %}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                    <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                </svg>
-                                            </a>
-                                            <a title="Add to Wishlist" href="#">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                                </svg>
-                                            </a>
-                                        </div>
+                                        <a title="Add to Wishlist" href="{% url 'add_wishlist' product.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                            </svg>
+                                        </a>
                                     </div>
-                                    <div class="product-content">
-                                        <h4><a href="product-details.html">{{product.name}}</a></h4>
-                                        <div class="product-price">
-                                            {% if product.sale %}
-                                                <span class="old-price">${{product.original_price}}</span>
-                                            {% endif %}
-                                            <span class="new-price">${{product.discount_price}}</span>
-                                        </div>
+                                </div>
+                                <div class="product-content">
+                                    <h4><a href="product-details.html">{{product.name}}</a></h4>
+                                    <div class="product-price">
+                                        {% if product.sale %}
+                                        <span class="old-price">${{product.original_price}}</span>
+                                        {% endif %}
+                                        <span class="new-price">${{product.discount_price}}</span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
