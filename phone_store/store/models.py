@@ -121,6 +121,9 @@ class PhoneProduct(AbstractProduct):
         return self.name
 
     def save(self):
+
+        for i in self.colors.all():
+            i.save()
         return super(PhoneProduct, self).save()
 
     def get_absolute_url(self):

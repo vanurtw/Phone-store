@@ -27,49 +27,31 @@
                                             <th></th>
                                             <th>Product</th>
                                             <th> Price</th>
-                                            <th>Quantity</th>
+                                            <th>Memory</th>
+                                            <th>Color</th>
                                             <th>Add To Cart</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {% for product in wishlist %}
                                         <tr>
                                             <td class="product-remove">
                                                 <a href="#"><i class=" ti-close "></i></a>
                                             </td>
                                             <td class="product-img">
-                                                <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                                                <a href="#"><img src="{{product.product.image.url}}" alt="" style="width:80%"></a>
                                             </td>
-                                            <td class="product-name"><a href="#">Heavy Duty [Military Grade] </a></td>
-                                            <td class="product-price"><span class="amount">$26.00</span></td>
-                                            <td class="cart-quality">
-                                                <div class="product-details-quality quality-width-cart">
-                                                    <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                               value="2">
-                                                    </div>
-                                                </div>
+                                            <td class="product-name"><a href="#" style="font-size: 14px;">{{product.product.name}} </a></td>
+                                            <td class="product-price"><span class="amount">₽{{product.price_discount}}</span></td>
+                                            <td style="width: 100px">
+                                                <span> {{product.get_memory_display}}</span>
+                                            </td>
+                                            <td style="width: 100px">
+                                                <span> {{product.color}}</span>
                                             </td>
                                             <td class="product-wishlist-cart"><a href="#">add to cart</a></td>
                                         </tr>
-                                        <tr>
-                                            <td class="product-remove">
-                                                <a href="#"><i class=" ti-close "></i></a>
-                                            </td>
-                                            <td class="product-img">
-                                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name"><a href="#">Noise Cancelling Headphones</a></td>
-                                            <td class="product-price"><span class="amount">$26.00</span></td>
-                                            <td class="cart-quality">
-                                                <div class="product-details-quality quality-width-cart">
-                                                    <div class="cart-plus-minus">
-                                                        <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                               value="2">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="product-wishlist-cart"><a href="#">add to cart</a></td>
-                                        </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

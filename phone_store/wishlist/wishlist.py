@@ -1,4 +1,5 @@
 from django.conf import settings
+from store.models import ColorCountProduct
 
 
 class Wishlist:
@@ -21,3 +22,9 @@ class Wishlist:
     def save(self):
         self.session[settings.WISHLIST_SESSION_ID] = self.wishlist
         self.session.modified = True
+
+    def __iter__(self):
+        for key in self.wishlist:
+            product = ColorCountProduct.objects.get(id=int(key))
+            yield product
+

@@ -8,7 +8,10 @@ from django.http import HttpResponse
 
 
 def wishlist(request):
-    return render(request, 'wishlist/wishlist.html')
+    context = {}
+    wishlist = Wishlist(request)
+    context['wishlist'] = wishlist
+    return render(request, 'wishlist/wishlist.html', context)
 
 
 def add_wishlist(request, id):
