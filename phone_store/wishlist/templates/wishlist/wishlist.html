@@ -59,7 +59,7 @@
                                             <td style="width: 100px">
                                                 <span> {{product.color}}</span>
                                             </td>
-                                            <td class="product-wishlist-cart"><a href="#">add to cart</a></td>
+                                            <td class="product-wishlist-cart"><a href="{% url 'wishlist_add_cart' product.id %}">add to cart</a></td>
                                         </tr>
                                         {% endfor %}
                                         </tbody>

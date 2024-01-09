@@ -33,6 +33,10 @@ class Cart(object):
         table_name = product._meta.object_name
         if product_id in self.cart[table_name]:
             del self.cart[table_name][product_id]
+            if not self.cart[table_name]:
+                del self.cart[table_name]
+            if len(self.cart) == 1:
+                self.cart['discount'] = 0
             self.save()
 
     def set_coupon(self, obj):
