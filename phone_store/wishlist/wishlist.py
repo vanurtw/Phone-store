@@ -28,3 +28,6 @@ class Wishlist:
             product = ColorCountProduct.objects.get(id=int(key))
             yield product
 
+    def delete(self, id):
+        del self.wishlist[id]
+        self.save()

@@ -28,7 +28,7 @@ def add_wishlist(request, id):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-def clear_wishlist(request):
+def delete(request, id):
     wishlist = Wishlist(request)
-    wishlist.clear()
+    wishlist.delete(id)
     return redirect('wishlist')
