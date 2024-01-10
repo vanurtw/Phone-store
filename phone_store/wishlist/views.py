@@ -9,9 +9,7 @@ from cart.cart import Cart
 
 
 def wishlist(request):
-    context = {}
-    wishlist = Wishlist(request)
-    context['wishlist'] = wishlist
+    context = {'chapter': 'None'}
     return render(request, 'wishlist/wishlist.html', context)
 
 
