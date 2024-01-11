@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect
 from .wishlist import Wishlist
 from store.models import ColorCountProduct, PhoneProduct
-from django.http import HttpResponse
+from django.views import View
+from django.views.generic import TemplateView
 from cart.cart import Cart
 
 
 # Create your views here.
-
-
-def wishlist(request):
-    context = {'chapter': 'None'}
-    return render(request, 'wishlist/wishlist.html', context)
+class WishlistIndex(TemplateView):
+    template_name = 'wishlist/wishlist.html'
+    extra_context = {'chapter': None}
 
 
 def add_wishlist(request, id):

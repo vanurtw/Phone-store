@@ -1,28 +1,39 @@
 from django.shortcuts import render, redirect
 from .models import PhoneProduct
-from cart.cart import Cart
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 
 
 # Create your views here.
 
+class HomeListView(ListView):
+    template_name = 'store/home.html'
+    context_object_name = 'products'
 
-def home_page(request):
-    products = PhoneProduct.published.all()[:4]
-    return render(request, 'store/home.html', {'products': products})
+    def get_queryset(self):
+        return PhoneProduct.published.all()[:4]
 
 
-def shop_page(request):
-    context = {'chapter': 'shop'}
-    context['type_product'] = request.GET.get('type-product', None)
-    if context['type_product'] == 'laptop':
-        products = []
-    elif context['type_product'] == 'iphone':
-        products = PhoneProduct.published.all()
-    else:
-        products = PhoneProduct.published.all()
-    context['products'] = products
-    return render(request, 'store/shop.html', context)
+class ShopListView(ListView):
+    template_name = 'store/shop.html'
+    context_object_name = 'products'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ShopListView, self).get_context_data(**kwargs)
+        context['chapter'] = 'shop'
+        context['type_product'] = self.request.GET.get('type-product', None)
+        return context
+
+    def get_queryset(self):
+        if self.kwargs.get('type_product') == 'laptop':
+            return []
+        # self.kwargs.get('type_product') == 'iphone':
+        return PhoneProduct.published.all()
+
+
+class ProductDetailView(DetailView):
+    template_name = 'store/product-details.html'
+    slug_url_kwarg = 'product_slug'
+    context_object_name = 'product'
 
 
 def product_details(request, product_slug):
