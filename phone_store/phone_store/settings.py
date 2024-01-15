@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'wishlist.apps.WishlistConfig',
     'debug_toolbar',
+    'users.apps.UsersConfig',
 
 ]
 
