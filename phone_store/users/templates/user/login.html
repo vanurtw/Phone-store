@@ -25,13 +25,13 @@
                             Login
                         </h3>
                         <div class="login-register-form">
-                            <form action="#">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {% for i in form %}
                                 <div class="sin-login-register">
-                                    <input type="text" name="user-name" placeholder="User name or email address *">
+                                    {{i}}
                                 </div>
-                                <div class="sin-login-register">
-                                    <input type="password" name="password" placeholder="Password *">
-                                </div>
+                                {% endfor %}
                                 <div class="login-register-btn">
                                     <button class="login" type="submit">Login</button>
                                     <button class="login-fb" type="submit">Login with Facebook</button>
@@ -45,22 +45,21 @@
                             </form>
                         </div>
                     </div>
-                    <div class="login-register-wrap">
-                        <h3><i class="fa fa-user-o"></i> <a class="register-active" href="#">Create Account</a></h3>
-                        <div class="login-register-form register-form-wrap">
-                            <form action="#">
-                                {% for i in form %}
-                                <div class="sin-login-register">
-                                    {{i}}
-                                </div>
-                                {% endfor %}
-
-                                <div class="login-register-btn">
-                                    <button class="login" type="submit">Register</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <!--                    <div class="login-register-wrap">-->
+                    <!--                        <h3><i class="fa fa-user-o"></i> <a class="register-active" href="#">Create Account</a></h3>-->
+                    <!--                        <div class="login-register-form register-form-wrap">-->
+                    <!--                            <form action="" method="post">-->
+                    <!--                                {% for i in form %}-->
+                    <!--                                <div class="sin-login-register">-->
+                    <!--                                    {{i}}-->
+                    <!--                                </div>-->
+                    <!--                                {% endfor %}-->
+                    <!--                                <div class="login-register-btn">-->
+                    <!--                                    <button class="login" type="submit">Register</button>-->
+                    <!--                                </div>-->
+                    <!--                            </form>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
