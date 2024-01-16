@@ -26,4 +26,10 @@ def logout_user(request):
 
 
 def register_user(request):
-    return render(request, 'user/register.html')
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            pass
+    else:
+        form = RegisterForm()
+    return render(request, 'user/register.html', {'form': form, 'chapter': 'None'})
