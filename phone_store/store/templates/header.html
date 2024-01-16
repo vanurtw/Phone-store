@@ -34,10 +34,17 @@
                                 {% else %}
                                 <li><a href="">CONTACT</a></li>
                                 {% endif %}
+                                {% if user.is_authenticated %}
+                                <li><a href="">{{user|upper}}</a></li>|
+                                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                                {% else %}
+                                <li><a href="{% url 'login' %}">LOGIN</a></li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>
                 </div>
+
                 <div class="col-xl-3 col-lg-2">
                     <div class="header-right-wrap header-right-flex hr-mrg-handmade">
 

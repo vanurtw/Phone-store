@@ -23,6 +23,7 @@
                                       d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                             </svg>
                             Login
+                            <a href="{% url 'register' %}" style="padding-left: 10px;">Register</a>
                         </h3>
                         <div class="login-register-form">
                             {% for error in form.non_field_errors %}
@@ -48,21 +49,6 @@
                             </form>
                         </div>
                     </div>
-                    <!--                    <div class="login-register-wrap">-->
-                    <!--                        <h3><i class="fa fa-user-o"></i> <a class="register-active" href="#">Create Account</a></h3>-->
-                    <!--                        <div class="login-register-form register-form-wrap">-->
-                    <!--                            <form action="" method="post">-->
-                    <!--                                {% for i in form %}-->
-                    <!--                                <div class="sin-login-register">-->
-                    <!--                                    {{i}}-->
-                    <!--                                </div>-->
-                    <!--                                {% endfor %}-->
-                    <!--                                <div class="login-register-btn">-->
-                    <!--                                    <button class="login" type="submit">Register</button>-->
-                    <!--                                </div>-->
-                    <!--                            </form>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>

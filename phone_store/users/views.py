@@ -5,7 +5,7 @@ from .forms import RegisterForm, LoginForm
 
 # Create your views here.
 
-def register_user(request):
+def login_user(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -17,9 +17,13 @@ def register_user(request):
                 form.add_error(None, 'Проверте правильность полей')
     else:
         form = LoginForm()
-    return render(request, 'user/login.html', context={'form': form})
+    return render(request, 'user/login.html', context={'form': form, 'chapter': 'None'})
 
 
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+def register_user(request):
+    return render(request, 'user/register.html')
