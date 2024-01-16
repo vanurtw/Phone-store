@@ -25,6 +25,9 @@
                             Login
                         </h3>
                         <div class="login-register-form">
+                            {% for error in form.non_field_errors %}
+                            <span style="padding: 20px;color: #cc0000;">{{error}}</span>
+                            {% endfor %}
                             <form action="" method="post">
                                 {% csrf_token %}
                                 {% for i in form %}
