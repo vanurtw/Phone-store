@@ -134,3 +134,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
 WISHLIST_SESSION_ID = 'wishlist'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                           'phone_store.authentication.EmailBackend',
+                           ]
