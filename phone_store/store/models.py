@@ -36,6 +36,7 @@ class Manufacture(models.Model):
 
 class Comments(models.Model):
     rating_choices = [
+        (None, 'Select rating'),
         ('5', '5'),
         ('4', '4'),
         ('3', '3'),
