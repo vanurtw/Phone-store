@@ -138,3 +138,7 @@ WISHLIST_SESSION_ID = 'wishlist'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'phone_store.authentication.EmailBackend',
                            ]
+
+# EMAIL_HOST_USER = 'phone_store'
+# EMAIL_HOST_PASSWORD = 'afYUQytvRW0euhsC9hRh'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
