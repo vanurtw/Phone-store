@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -33,6 +34,19 @@ class Manufacture(models.Model):
         verbose_name_plural = 'Производители'
 
 
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    comment = models.TextField(verbose_name='Комментарий')
+
+    def __str__(self):
+        return f'comment_{self.user}'
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+
 class AbstractProduct(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название товара')
     slug = models.SlugField(max_length=255, unique=True)
@@ -53,6 +67,7 @@ class AbstractProduct(models.Model):
     active = models.BooleanField(default=True)
     new_product = models.BooleanField(default=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    comments = models.ForeignKey(Comments, on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
     published = PublishedManager()
 
@@ -60,7 +75,7 @@ class AbstractProduct(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
-        self.discount_price = self.original_price*(1-self.discount/100)
+        self.discount_price = self.original_price * (1 - self.discount / 100)
         return super(AbstractProduct, self).save(*args, **kwargs)
 
 
@@ -88,7 +103,7 @@ class ColorCountProduct(models.Model):
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
 
     def save(self, *args, **kwargs):
-        self.price_discount = self.price*(1 - self.product.discount/100)
+        self.price_discount = self.price * (1 - self.product.discount / 100)
         return super(ColorCountProduct, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -121,7 +136,6 @@ class PhoneProduct(AbstractProduct):
         return self.name
 
     def save(self):
-
         for i in self.colors.all():
             i.save()
         return super(PhoneProduct, self).save()

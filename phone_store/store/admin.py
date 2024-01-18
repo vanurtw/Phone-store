@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories
+from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories, Comments
 
 
 # Register your models here.
@@ -11,6 +11,11 @@ class ManufactureAdmin(admin.ModelAdmin):
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Comments)
+class CommentsAdmin(admin.ModelAdmin):
     pass
 
 
