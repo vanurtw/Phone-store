@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 
+
 # Create your views here.
 
 def login_user(request):

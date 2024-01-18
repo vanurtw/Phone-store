@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 
 class RegisterForm(forms.ModelForm):
@@ -30,9 +31,22 @@ class RegisterForm(forms.ModelForm):
         return cd['password']
 
 
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'sin-login-register', 'placeholder': "User name or email address *"}))
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'sin-login-register', 'placeholder': "Password *"}))
+
+
+class PasswordResetFormUser(PasswordResetForm):
+    email = forms.EmailField(label='email', max_length=254, widget=forms.EmailInput(
+        attrs={'class': 'sin-login-register', 'placeholder': "Enter linked to account email"}))
+
+
+class SetPasswordFormUser(SetPasswordForm):
+    new_password1 = forms.CharField(label='New password',
+                                    widget=forms.PasswordInput(attrs={'class': 'sin-login-register',
+                                                                      'placeholder': 'Enter a new password'}))
+    new_password2 = forms.CharField(label='Repeat new password',
+                                    widget=forms.PasswordInput(attrs={'class': 'sin-login-register',
+                                                                      'placeholder': 'Repeat new password'}))
