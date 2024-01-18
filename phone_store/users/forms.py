@@ -7,6 +7,8 @@ from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 class RegisterForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'sin-login-register', 'placeholder': "User name or email address *"}))
+    email = forms.CharField(
+        widget=forms.EmailInput(attrs={'class': 'sin-login-register', 'placeholder': "Email address"}))
     password = forms.CharField(min_length=7,
                                widget=forms.PasswordInput(
                                    attrs={'class': 'sin-login-register', 'placeholder': "Password"}))
