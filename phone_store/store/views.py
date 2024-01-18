@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import PhoneProduct
 from django.views.generic import ListView, DetailView
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -38,6 +39,14 @@ class ProductDetailView(DetailView):
 
 def product_details(request, product_slug):
     product = PhoneProduct.published.get(slug=product_slug)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        form = form.save(commit=False)
+        form.user = request.user
+        form.product = product
+        form.save()
+        return redirect(request.META['HTTP_REFERER'])
+    form = CommentForm()
     color_product = product.colors.all()
     col = request.GET.get('color', color_product[0].color)
     memory_product = color_product.filter(color__icontains=col)
@@ -46,6 +55,6 @@ def product_details(request, product_slug):
     prod = memory_product.get(memory=memory)
     related_products = PhoneProduct.objects.all().order_by('?')[:4]
     context = {'prod_header': prod_header, 'color': col.lower(), 'memory': memory, 'product': product,
-               'color_product': color_product,
+               'color_product': color_product, 'form': form,
                'chapter': 'shop', 'prod': prod, 'memory_product': memory_product, 'related_products': related_products}
     return render(request, 'store/product-details.html', context=context)

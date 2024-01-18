@@ -35,9 +35,19 @@ class Manufacture(models.Model):
 
 
 class Comments(models.Model):
+    rating_choices = [
+        ('5', '5'),
+        ('4', '4'),
+        ('3', '3'),
+        ('2', '2'),
+        ('1', '1'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='comments')
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     comment = models.TextField(verbose_name='Комментарий')
+    rating = models.CharField(choices=rating_choices, max_length=2, verbose_name='Рейтинг')
 
     def __str__(self):
         return f'comment_{self.user}'
@@ -67,7 +77,6 @@ class AbstractProduct(models.Model):
     active = models.BooleanField(default=True)
     new_product = models.BooleanField(default=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    comments = models.ForeignKey(Comments, on_delete=models.CASCADE, blank=True, null=True)
     objects = models.Manager()
     published = PublishedManager()
 

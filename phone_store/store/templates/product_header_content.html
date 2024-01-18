@@ -1,3 +1,5 @@
+{% load tags_load %}
+
 {% if prod_header == 'description' %}
 <div id="des-details1" class="tab-pane active">
     <div class="product-description-wrapper">
@@ -26,21 +28,22 @@
 
 <div id="des-details2" class="tab-pane active">
     <div class="product-dec-col-62">
-    <div class="additional-info">
-        <ul>
-            <li><span>Name</span>{{product.name}}</li>
-            <li><span>Brands</span>{{product.manufacture.name}}</li>
-            <li><span>Diagonal</span> {{product.diagonal}} mm</li>
-            <li><span>Frame</span> {{product.frame}}</li>
-            <li><span>Height</span> {{product.height}} mm</li>
-            <li><span>Width</span> {{product.width}} mm</li>
-            <li><span>Thickness</span> {{product.thickness}} mm</li>
-            <li><span>Weight</span> {{product.weight}} gram</li>
-            <li><span>Display</span>{{product.display}}</li>
-            <li><span>Connector</span>{{product.connector}}</li>
-            <li><span>Battery type</span>{{product.battery_type}}</li>
-        </ul>
-    </div></div>
+        <div class="additional-info">
+            <ul>
+                <li><span>Name</span>{{product.name}}</li>
+                <li><span>Brands</span>{{product.manufacture.name}}</li>
+                <li><span>Diagonal</span> {{product.diagonal}} mm</li>
+                <li><span>Frame</span> {{product.frame}}</li>
+                <li><span>Height</span> {{product.height}} mm</li>
+                <li><span>Width</span> {{product.width}} mm</li>
+                <li><span>Thickness</span> {{product.thickness}} mm</li>
+                <li><span>Weight</span> {{product.weight}} gram</li>
+                <li><span>Display</span>{{product.display}}</li>
+                <li><span>Connector</span>{{product.connector}}</li>
+                <li><span>Battery type</span>{{product.battery_type}}</li>
+            </ul>
+        </div>
+    </div>
 </div>
 {% endif %}
 
@@ -48,6 +51,7 @@
 <div id="des-details3" class="tab-pane active">
     <div class="review-wrapper">
         <h2>1 review for Sleeve Button Cowl Neck</h2>
+        {% for item in product.comments.all %}
         <div class="single-review">
             <div class="review-img">
                 <img src="assets/images/product-details/client-1.jpg" alt="">
@@ -55,75 +59,42 @@
             <div class="review-content">
                 <div class="review-top-wrap">
                     <div class="review-name">
-                        <h5><span>John Snow</span> - March 14, 2019</h5>
+                        <h5><span>{{item.user.first_name}}</span> - {{item.data_create|date:'d.m.Y'}}</h5>
                     </div>
-                    <div class="review-rating">
-                        <i class="yellow fa fa-star"></i>
-                        <i class="yellow fa fa-star"></i>
-                        <i class="yellow fa fa-star"></i>
-                        <i class="yellow fa fa-star"></i>
-                        <i class=" fa fa-star"></i>
+                    <div class="review-rating" style="padding-left: 10px;">
+                        {% for i in item.rating|range %}
+                        <!--                        <i class="yellow fa fa-star"></i>-->
+                        <svg  style="color:#e78631" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                        {% endfor %}
+                        {% for i in item.rating|range_none %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-star" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                        </svg>
+                        {% endfor %}
                     </div>
                 </div>
-                <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna
-                    molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci.
-                    Aliquam egestas libero ac turpis pharetra, in vehicula lacus
-                    scelerisque</p>
+                <p>{{item.comment}}</p>
             </div>
         </div>
+        {% endfor %}
     </div>
     <div class="ratting-form-wrapper">
         <span>Add a Review</span>
         <p>Your email address will not be published. Required fields are marked
             <span>*</span></p>
         <div class="ratting-form">
-            <form action="#">
+            <form action="" method="post">
+                {% csrf_token %}
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="rating-form-style mb-20">
-                            <label>Name <span>*</span></label>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="rating-form-style mb-20">
-                            <label>Email <span>*</span></label>
-                            <input type="email">
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="star-box-wrap">
-                            <div class="single-ratting-star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                            <div class="single-ratting-star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                            <div class="single-ratting-star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                            <div class="single-ratting-star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                            <div class="single-ratting-star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-6">
+                        {{form.rating}}
                         <div class="rating-form-style mb-20">
                             <label>Your Review <span>*</span></label>
-                            <textarea name="Your Review"></textarea>
+                            {{form.comment}}
                         </div>
                     </div>
                     <div class="col-lg-12">

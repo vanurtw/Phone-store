@@ -23,4 +23,14 @@ def product_header(context):
 @register.inclusion_tag('product_header_content.html', takes_context=True)
 def product_header_content(context):
     return {'prod_header': context['prod_header'], 'product': context['product'],
-            'color_product': context['color_product']}
+            'color_product': context['color_product'], 'form': context['form']}
+
+
+@register.filter(name='range')
+def range_filter(count):
+    return [i for i in range(int(count))]
+
+
+@register.filter(name='range_none')
+def range_filter_none(count):
+    return [i for i in range(int(count), 5)]
