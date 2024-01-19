@@ -6,7 +6,7 @@ from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories, Co
 
 @admin.register(Manufacture)
 class ManufactureAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'create']
 
 
 @admin.register(Categories)
@@ -16,7 +16,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Comments)
 class CommentsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['user', 'product', 'rating', 'data_create']
 
 
 class ColorCountProductInline(admin.StackedInline):
@@ -30,9 +30,11 @@ class PhoneProductAdmin(admin.ModelAdmin):
     exclude = ['create']
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
-    list_filter = ['create', 'colors__memory', 'colors__color']
+    list_filter = ['create', 'colors__memory', 'colors__color', 'sale', 'new_product']
+    list_display = ['name', 'sale', 'new_product']
 
 
 @admin.register(ColorCountProduct)
 class ColorCountProductAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['product', 'color', 'memory', 'count']
+    list_filter = ['product', 'color', 'memory']

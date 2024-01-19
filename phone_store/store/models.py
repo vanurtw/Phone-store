@@ -18,6 +18,10 @@ class Categories(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 class Manufacture(models.Model):
     name = models.CharField(max_length=200, verbose_name='Имя производителя')
@@ -76,7 +80,7 @@ class AbstractProduct(models.Model):
     weight = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Вес')
     create = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     active = models.BooleanField(default=True)
-    new_product = models.BooleanField(default=True)
+    new_product = models.BooleanField(default=True, verbose_name='Новый товар')
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     objects = models.Manager()
     published = PublishedManager()
