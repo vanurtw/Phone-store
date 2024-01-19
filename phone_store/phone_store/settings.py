@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'wishlist.apps.WishlistConfig',
     'debug_toolbar',
     'users.apps.UsersConfig',
+    'order.apps.OrderConfig',
 
 ]
 

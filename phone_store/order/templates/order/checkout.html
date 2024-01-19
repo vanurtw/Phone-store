@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="breadcrumb-area section-padding-1 bg-gray breadcrumb-ptb-1">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <div class="breadcrumb-title">
+                    <h2>Checkout </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-main-area pt-90 pb-90">
+        <div class="container">
+            <div class="checkout-wrap pt-30">
+                <form action="">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="billing-info-wrap mr-50">
+
+
+                            <h3>Billing Details</h3>
+                            <div class="row">
+
+
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-20">
+                                        <label>First Name <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Last Name <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Company Name <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Street Address <abbr class="required" title="required">*</abbr></label>
+                                        <input class="billing-address" placeholder="House number and street name"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Town / City <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Postcode / ZIP <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Phone <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20">
+                                        <label>Email Address <abbr class="required" title="required">*</abbr></label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-5">
+                        <div class="your-order-area">
+                            <h3>Your order</h3>
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-info-wrap">
+                                    <div class="your-order-info">
+                                        <ul>
+                                            <li>Product <span>Total</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-middle">
+                                        <ul>
+                                            <li>Product Name X 1 <span>$329 </span></li>
+                                            <li>Product Name X 1 <span>$329 </span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-subtotal">
+                                        <ul>
+                                            <li>Subtotal <span>$329 </span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-shipping">
+                                        <ul>
+                                            <li>Shipping <p>Enter your full address </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-total">
+                                        <ul>
+                                            <li>Total <span>$273.00 </span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Place-order mt-40">
+                                <button class="order-button">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+</div>
+{% endblock %}
