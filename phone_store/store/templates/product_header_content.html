@@ -81,11 +81,13 @@
         </div>
         {% endfor %}
     </div>
+    {% if user.is_authenticated %}
     <div class="ratting-form-wrapper">
         <span>Add a Review</span>
         <p>Your email address will not be published. Required fields are marked
             <span>*</span></p>
         <div class="ratting-form">
+
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="row">
@@ -108,6 +110,13 @@
             </form>
         </div>
     </div>
+    {% else %}
+    <div class="ratting-form-wrapper">
+        <span>To leave a comment please <a href="{% url 'login' %}" style="color: #e78631;">log in</a>
+            <span>*</span></span>
+    </div>
+    {% endif %}
+
 </div>
 {% endif %}
 
