@@ -18,6 +18,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=20, verbose_name='Телефон')
     email = models.EmailField(verbose_name='Почта')
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    order_notes = models.TextField(blank=True)
 
     def __str__(self):
         return f'Order_{self.id}'
