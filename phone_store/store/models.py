@@ -113,8 +113,9 @@ class ColorCountProduct(models.Model):
     memory = models.CharField(max_length=10, choices=MemoryChoices, verbose_name='Память')
     price = models.PositiveIntegerField(verbose_name='Цена')
     price_discount = models.PositiveIntegerField()
-    count = models.PositiveIntegerField(verbose_name='Кол-во')
+    count = models.IntegerField(verbose_name='Кол-во')
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
+    active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         self.price_discount = self.price * (1 - self.product.discount / 100)

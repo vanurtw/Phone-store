@@ -31,10 +31,10 @@ class PhoneProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
     list_filter = ['create', 'colors__memory', 'colors__color', 'sale', 'new_product']
-    list_display = ['name', 'sale', 'new_product']
+    list_display = ['id', 'name', 'sale', 'new_product']
 
 
 @admin.register(ColorCountProduct)
 class ColorCountProductAdmin(admin.ModelAdmin):
-    list_display = ['product', 'color', 'memory', 'count']
+    list_display = ['product', 'color', 'memory', 'count', 'active']
     list_filter = ['product', 'color', 'memory']

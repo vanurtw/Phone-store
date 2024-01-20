@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from store.models import ColorCountProduct
 
 
 # Create your models here.
@@ -23,10 +24,22 @@ class Order(models.Model):
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     order_notes = models.TextField(blank=True, verbose_name='Комментарии к заказу')
 
-
     def __str__(self):
         return f'Order_{self.user}'
 
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(ColorCountProduct, on_delete=models.CASCADE, verbose_name='Продукт')
+    memory = models.CharField(max_length=50)
+    price = models.PositiveIntegerField()
+    color = models.CharField(max_length=50)
+    quantity = models.PositiveIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.order}_{self.product}'
