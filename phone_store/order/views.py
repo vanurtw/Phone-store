@@ -4,6 +4,7 @@ from cart.cart import Cart
 from .models import OrderItem
 from store.models import ColorCountProduct
 from django.db.models import F
+from django.contrib import messages
 
 
 # Create your views here.
@@ -38,6 +39,8 @@ def order_user(request):
             quantity = int(item['quantity'])
             if quantity > product.count:
                 item['quantity'] = product.count
+                messages.info(request,
+                              'Колличество товаров в заказе было изменено, т.к. товра в наличии меньше указанного')
 
     context = {'form': form}
     return render(request, 'order/checkout.html', context)
