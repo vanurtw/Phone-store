@@ -13,7 +13,8 @@
     <div class="checkout-main-area pt-90 pb-90">
         <div class="container">
             <div class="checkout-wrap pt-30">
-                <form action="">
+                <form action="" method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="billing-info-wrap mr-50">
