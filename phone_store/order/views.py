@@ -22,6 +22,11 @@ def order_user(request):
                 quantity = item['quantity']
                 product.count = F('count') - quantity
                 product.save()
+                product.refresh_from_db()
+                if product.count <= 0:
+                    product.count = 0
+                    product.active = False
+                    product.save()
                 OrderItem.objects.create(order=order, product=product, memory=item['memory'], price=item['price'],
                                          color=item['color'], quantity=quantity)
             cart.clear()
