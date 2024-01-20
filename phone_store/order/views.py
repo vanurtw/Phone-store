@@ -17,6 +17,8 @@ def order_user(request):
         if form.is_valid():
             order = form.save(commit=False)
             order.user = request.user
+            order.price = request.POST.get('price')
+            order.discount = request.POST.get('discount', 0)
             order.save()
             for item in cart:
                 product = ColorCountProduct.objects.get(id=item['id'])

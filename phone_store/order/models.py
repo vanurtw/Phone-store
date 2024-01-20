@@ -12,6 +12,8 @@ class Order(models.Model):
 
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    price = models.IntegerField(blank=True, verbose_name='Стоимость заказа')
+    discount = models.IntegerField(verbose_name='Скидка')
     paid = models.BooleanField(default=False, verbose_name='Заказ оплачен')
     first_name = models.CharField(max_length=50, verbose_name='Имя заказчика')
     last_name = models.CharField(max_length=50, verbose_name='Фамилия заказчика')
@@ -40,6 +42,15 @@ class OrderItem(models.Model):
     color = models.CharField(max_length=50)
     quantity = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+    total_price = models.IntegerField()
 
     def __str__(self):
         return f'{self.order}_{self.product}'
+
+    def save(self, *args, **kwargs):
+        self.total_price = self.quantity * self.price
+        super(OrderItem, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Тип Заказа'
+        verbose_name_plural = 'Типы заказов'

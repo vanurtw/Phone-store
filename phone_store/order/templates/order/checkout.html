@@ -73,6 +73,8 @@
                                         </div>
                                         <div class="your-order-info order-total">
                                             <ul>
+                                                <input type="hidden" value="{{cart.total_price}}" name="price">
+                                                <input type="hidden" value="{{cart.cart.discount}}" name="discount">
                                                 <li>Total <span>₽ {{cart.total_price}} </span></li>
                                             </ul>
                                         </div>
