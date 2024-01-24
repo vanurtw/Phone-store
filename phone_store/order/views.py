@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import OrderForm
 from cart.cart import Cart
 from .models import OrderItem
@@ -35,7 +35,8 @@ def order_user(request):
                                          color=item['color'], quantity=quantity)
             cart.clear()
             order_created.delay(form.cleaned_data['email'])
-
+            request.session['order_id'] = order.id
+            return redirect('payment')
 
     else:
         form = OrderForm()

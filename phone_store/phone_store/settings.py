@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'users.apps.UsersConfig',
     'order.apps.OrderConfig',
+    'payment.apps.PaymentConfig',
 
 ]
 
@@ -150,5 +151,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
-
 CELERY_BROKER_URL = "amqp://guest:guest@localhost:5672"
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OHKGHA6Z3RPpTyQsp4ahqoTF2vQMnY90ywjOSXrKzmSHmekfpPnfI26W3bz1FZ6zCcqhLdv7BvXxneOJKIVGA5Z00wtubLqWg'
+STRIPE_SECRET_KEY = 'sk_test_51OHKGHA6Z3RPpTyQAzUmFBOVC617HlB7beIop0S228G0twmVbmYpbEjtgz22rfHRfnYahVTYjh7dfcdtkZWlfXbo00ZWes5Ai4'
+STRIPE_API_VERSION = '2022-08-01'
