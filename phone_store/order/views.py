@@ -5,6 +5,7 @@ from .models import OrderItem
 from store.models import ColorCountProduct
 from django.db.models import F
 from django.contrib import messages
+from .tasks import order_created
 
 
 # Create your views here.
@@ -33,6 +34,8 @@ def order_user(request):
                 OrderItem.objects.create(order=order, product=product, memory=item['memory'], price=item['price'],
                                          color=item['color'], quantity=quantity)
             cart.clear()
+            order_created.delay(form.cleaned_data['email'])
+
 
     else:
         form = OrderForm()
