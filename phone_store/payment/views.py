@@ -24,7 +24,7 @@ def process_payment(request):
             'line_items': []
         }
         for item in order.items.all():
-            success_url['line_items'].append({
+            session_data['line_items'].append({
                 'price_data': {
                     'unit_amount': int(item.total_price * decimal.Decimal('100')), 'currency': 'RUB',
                     'product_data': {
