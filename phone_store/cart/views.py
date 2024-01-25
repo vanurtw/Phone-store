@@ -26,7 +26,7 @@ def add_cart(request, id, slug):
         product = PhoneProduct.objects.get(id=id).colors.get(color=color.upper(), memory=memory)
         cart.add(product, quantity=int(quantity))
     else:
-        product = PhoneProduct.objects.get(id=id).colors.all().first()
+        product = PhoneProduct.objects.get(id=id).colors.filter(count__gt=0).first()
         cart.add(product)
     return redirect(request.META.get('HTTP_REFERER'))
 
