@@ -3,6 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    ('', , name='payment')
+    # ('', , name='payment')
 
 ]
