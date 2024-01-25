@@ -36,7 +36,7 @@ def order_user(request):
             cart.clear()
             order_created.delay(form.cleaned_data['email'])
             request.session['order_id'] = order.id
-            return redirect('payment')
+            return redirect('payment_process')
 
     else:
         form = OrderForm()
