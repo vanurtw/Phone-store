@@ -13,3 +13,8 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields = ['rating', 'comment']
+
+
+class SetQuantityGoods(forms.Form):
+    _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
+    count = forms.IntegerField(min_value=0)
