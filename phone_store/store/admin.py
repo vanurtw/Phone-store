@@ -62,4 +62,4 @@ class ColorCountProductAdmin(admin.ModelAdmin):
         if not form:
             form = SetQuantityGoods(initial={'_selected_action': request.POST.getlist('_selected_action')})
         return render(request, 'admin/set_count.html',
-                      {'form': form, 'queryset': queryset, 'title': 'Установить колличество', })
+                      {'form': form, 'title': 'Установить колличество', })

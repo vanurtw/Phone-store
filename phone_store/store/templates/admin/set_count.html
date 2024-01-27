@@ -4,7 +4,6 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
-    <ul>{{ queryset|unordered_list }}</ul>
     <input type="hidden" name="action" value="set_quantity_goods" />
     <input type="submit" name="apply" value="Сохранить"/>
 </form>
