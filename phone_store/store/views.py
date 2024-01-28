@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import PhoneProduct
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
+from django.db.models import Count
 
 import csv
 from django.http import HttpResponse
@@ -33,7 +34,7 @@ class ShopListView(ListView):
         # self.kwargs.get('type_product') == 'iphone':
         return PhoneProduct.published.all()
 
-
+# na zamenu
 class ProductDetailView(DetailView):
     template_name = 'store/product-details.html'
     slug_url_kwarg = 'product_slug'

@@ -50,7 +50,7 @@
 {% if prod_header == 'reviews' %}
 <div id="des-details3" class="tab-pane active">
     <div class="review-wrapper">
-        <h2>1 review for Sleeve Button Cowl Neck</h2>
+        <h2>{{product.comments.count}} review for {{product.name}}</h2>
         {% for item in product.comments.all %}
         <div class="single-review">
             <div class="review-img">

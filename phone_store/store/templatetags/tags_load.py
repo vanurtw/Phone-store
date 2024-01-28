@@ -17,7 +17,7 @@ def distinct(qs, param):
 
 @register.inclusion_tag('product_header.html', takes_context=True)
 def product_header(context):
-    return {'prod_header': context['prod_header']}
+    return {'prod_header': context['prod_header'], 'product':context['product']}
 
 
 @register.inclusion_tag('product_header_content.html', takes_context=True)
