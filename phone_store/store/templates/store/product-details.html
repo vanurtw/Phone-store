@@ -144,12 +144,15 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="description-review-wrapper">
+                        {% with comment_count=product.comments.count %}
                         <div class="description-review-topbar nav">
                             {% product_header %}
                         </div>
                         <div class="tab-content description-review-bottom">
                             {% product_header_content %}
+
                         </div>
+                        {% endwith %}
                     </div>
                 </div>
             </div>

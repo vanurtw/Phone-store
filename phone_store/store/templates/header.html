@@ -25,9 +25,9 @@
                                 <li><a href="{% url 'shop' %}">SHOP</a></li>
                                 {% endif %}
                                 {% if chapter == 'blog' %}
-                                <li><a href="" class="active">BLOG</a></li>
+                                <li><a href="{% url 'blog_home' %}" class="active">BLOG</a></li>
                                 {% else %}
-                                <li><a href="">BLOG</a></li>
+                                <li><a href="{% url 'blog_home' %}">BLOG</a></li>
                                 {% endif %}
                                 {% if chapter == 'contact' %}
                                 <li><a href="" class="active">CONTACT</a></li>

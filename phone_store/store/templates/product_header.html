@@ -9,9 +9,9 @@
 <a data-toggle="tab" href="{{product.get_absolute_url}}?prod-header=additional-information" class="">ADDITIONAL INFORMATION</a>
 {% endif %}
 {% if prod_header == 'reviews' %}
-<a data-toggle="tab" href="#des-details3" class="active disabled">Reviews ({{product.comments.count}})</a>
+<a data-toggle="tab" href="#des-details3" class="active disabled">Reviews ({{comment_count}})</a>
 {% else %}
-<a data-toggle="tab" href="{{product.get_absolute_url}}?prod-header=reviews" class="">Reviews ({{product.comments.count}})</a>
+<a data-toggle="tab" href="{{product.get_absolute_url}}?prod-header=reviews" class="">Reviews ({{comment_count}})</a>
 {% endif %}
 {% if prod_header == 'about-brand' %}
 <a data-toggle="tab" href="#des-details5" class="active disabled"> ABOUT BRAND</a>

@@ -17,12 +17,14 @@ def distinct(qs, param):
 
 @register.inclusion_tag('product_header.html', takes_context=True)
 def product_header(context):
-    return {'prod_header': context['prod_header'], 'product':context['product']}
+    return {'prod_header': context['prod_header'], 'product': context['product'],
+            'comment_count': context['comment_count']}
 
 
 @register.inclusion_tag('product_header_content.html', takes_context=True)
 def product_header_content(context):
     return {'prod_header': context['prod_header'], 'product': context['product'],
+            'comment_count': context['comment_count'],
             'color_product': context['color_product'], 'form': context['form'], 'user': context['user']}
 
 
