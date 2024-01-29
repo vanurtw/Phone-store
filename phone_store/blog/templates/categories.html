@@ -2,6 +2,8 @@
     <h4 class="pro-sidebar-title2">Categories </h4>
     <div class="sidebar-widget-list-2 mt-25">
         <ul>
+            <li><a href="{% url 'blog_home' %}">
+                All categories</a></li>
             {% for i in categories %}
             <li><a href="{% url 'blog_home' %}?category={{i.slug}}">{{i.name}}</a> <span>({{i.items.count}})</span></li>
             {% endfor %}
