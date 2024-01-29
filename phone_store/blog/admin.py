@@ -12,4 +12,5 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['']
+    list_display = ['title', 'category', 'data_create']
+    prepopulated_fields = {'slug': ('title',)}

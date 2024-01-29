@@ -17,202 +17,27 @@
             <div class="row flex-row-reverse">
                 <div class="col-lg-9">
                     <div class="main-blog-wrap">
+
+                        {% for item in post %}
+                        <div style="margin-bottom: 20px;"> <span class="categor">Life Style</span></div>
                         <div class="blog-wrap-4">
-                            <div class="blog-img-4">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog/blog-1.png" alt="blog">
-                                </a>
-                                <span>Life Style</span>
-                            </div>
                             <div class="blog-content-4">
-                                <h3><a href="#">Always Look On The Bright Side Of Life</a></h3>
+                                <h3><a href="#">{{item.title}}</a></h3>
                                 <div class="blog-meta-4">
                                     <ul>
-                                        <li>By <a href="#">by John Snow</a></li>
-                                        <li>-</li>
-                                        <li><a href="#">April 17,2019</a></li>
+
+                                        <li><a href="#">{{item.data_create|date:'F d, Y'}}</a></li>
                                     </ul>
                                 </div>
-                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam,
-                                    convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla
-                                    fermentum…</p>
+                                <p>{{item.content|truncatewords:'37'}}</p>
                                 <div class="blog-btn-2 btn-hover">
                                     <a class="bg-black-hover" href="product-details.html">Read More</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="blog-wrap-4">
-                            <div class="blog-img-4">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog/blog-2.png" alt="blog">
-                                </a>
-                                <span>Life Style</span>
-                                <div class="video-btn-4">
-                                    <a class="video-popup"
-                                       href="https://player.vimeo.com/video/181061053?autoplay=1&amp;byline=0&amp;collections=0"><i
-                                            class="fa fa-play"></i></a>
-                                </div>
-                            </div>
-                            <div class="blog-content-4">
-                                <h3><a href="#">Philosophy As A Science</a></h3>
-                                <div class="blog-meta-4">
-                                    <ul>
-                                        <li>By <a href="#">by John Snow</a></li>
-                                        <li>-</li>
-                                        <li><a href="#">April 17,2019</a></li>
-                                    </ul>
-                                </div>
-                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam,
-                                    convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla
-                                    fermentum…</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-wrap-4">
-                            <div class="blog-img-4">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog/blog-3.png" alt="blog">
-                                </a>
-                                <span>BEAUTY</span>
-                            </div>
-                            <div class="blog-content-4">
-                                <h3><a href="#">Does Hydroderm Work</a></h3>
-                                <div class="blog-meta-4">
-                                    <ul>
-                                        <li>By <a href="#">by John Snow</a></li>
-                                        <li>-</li>
-                                        <li><a href="#">April 17,2019</a></li>
-                                    </ul>
-                                </div>
-                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam,
-                                    convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla
-                                    fermentum…</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-wrap-4">
-                            <div class="blog-img-4">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog/blog-4.png" alt="blog">
-                                </a>
-                                <span>LOOK BOOK</span>
-                            </div>
-                            <div class="blog-content-4">
-                                <h3><a href="#">Sleek Hair Sedu Style</a></h3>
-                                <div class="blog-meta-4">
-                                    <ul>
-                                        <li>By <a href="#">by John Snow</a></li>
-                                        <li>-</li>
-                                        <li><a href="#">April 17,2019</a></li>
-                                    </ul>
-                                </div>
-                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam,
-                                    convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla
-                                    fermentum…</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="blog-wrap-4">
-                                    <div class="blog-img-4">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-5.png" alt="blog">
-                                        </a>
-                                        <span>LOOK BOOK</span>
-                                    </div>
-                                    <div class="blog-content-4">
-                                        <h3><a href="#">Sensible Beauty Tips For Enhancing Your Appearance</a></h3>
-                                        <div class="blog-meta-4">
-                                            <ul>
-                                                <li>By <a href="#">by John Snow</a></li>
-                                                <li>-</li>
-                                                <li><a href="#">April 17,2019</a></li>
-                                            </ul>
-                                        </div>
-                                        <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum
-                                            libero diam, convallis in arcu ut, semper vulputate dolor. Vestibulum ante
-                                            ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae usce
-                                            luctus fringilla fermentum…</p>
-                                        <div class="blog-btn-2 btn-hover">
-                                            <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="blog-wrap-4">
-                                    <div class="blog-img-4">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-6.png" alt="blog">
-                                        </a>
-                                        <span>LOOK BOOK</span>
-                                    </div>
-                                    <div class="blog-content-4">
-                                        <h3><a href="#">Producing Perfume From Home</a></h3>
-                                        <div class="blog-meta-4">
-                                            <ul>
-                                                <li>By <a href="#">by John Snow</a></li>
-                                                <li>-</li>
-                                                <li><a href="#">April 17,2019</a></li>
-                                            </ul>
-                                        </div>
-                                        <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum
-                                            libero diam, convallis in arcu ut, semper vulputate dolor. Vestibulum ante
-                                            ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae usce
-                                            luctus fringilla fermentum…</p>
-                                        <div class="blog-btn-2 btn-hover">
-                                            <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-wrap-4">
-                            <div class="quote-content text-center">
-                                <h5><a href="blog-details.html">“Highly customizable. Excellent design. Customer
-                                    services has exceeded my expectation. They are quick to answer and even when they
-                                    don’t know the answer right away. They’ll work with you towards a solution”</a></h5>
-                                <div class="blog-name">
-                                    <span>Michael Franklin</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-wrap-4">
-                            <div class="blog-img-4">
-                                <a href="blog-details.html">
-                                    <img src="assets/images/blog/blog-7.png" alt="blog">
-                                </a>
-                                <span>LOOK BOOK</span>
-                            </div>
-                            <div class="blog-content-4">
-                                <h3><a href="#">Fast And Furious Facial</a></h3>
-                                <div class="blog-meta-4">
-                                    <ul>
-                                        <li>By <a href="#">by John Snow</a></li>
-                                        <li>-</li>
-                                        <li><a href="#">April 17,2019</a></li>
-                                    </ul>
-                                </div>
-                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam,
-                                    convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in
-                                    faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla
-                                    fermentum…</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
+
+
                         <div class="pro-pagination-style">
                             <ul>
                                 <li><a class="active" href="#">01</a></li>
@@ -222,6 +47,7 @@
                                 <li><a href="#">05</a></li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-lg-3">
