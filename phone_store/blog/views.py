@@ -5,6 +5,9 @@ from .models import Post, Categories
 # Create your views here.
 def blog_home(request):
     context = {'chapter': 'blog'}
+    category = request.GET.get('category')
+    if category:
+        category = Categories.objects.get()
     post = Post.objects.all()
     context['post'] = post
 

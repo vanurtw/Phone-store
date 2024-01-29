@@ -7,7 +7,8 @@ from .models import Categories, Post
 
 @admin.register(Categories)
 class CategoriesAdmin(admin.ModelAdmin):
-    list_display = ['name', 'data_create']
+    list_display = ['name', 'data_create', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Post)
