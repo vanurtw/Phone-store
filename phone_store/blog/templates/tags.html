@@ -4,9 +4,9 @@
         <ul>
             {% for item in tags %}
             {% if forloop.last%}
-            <li><a href="#">{{item.name}}</a></li>
+            <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item.name}}</a></li>
             {% else %}
-            <li><a href="#">{{item.name}},</a></li>
+            <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item.name}},</a></li>
             {% endif %}
             {% endfor %}
         </ul>

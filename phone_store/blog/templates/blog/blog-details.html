@@ -45,9 +45,14 @@
                             <div class="blog-details-tag">
                                 <ul>
                                     <li>Tags :</li>
-                                    <li><a href="#">Computer,</a></li>
-                                    <li><a href="#">Design,</a></li>
-                                    <li><a href="#">Technology.</a></li>
+                                    {% for item in post.tags.all %}
+                                    {% if forloop.last %}
+                                    <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item}}.</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item}},</a></li>
+                                    {% endif %}
+
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="blog-details-social">
