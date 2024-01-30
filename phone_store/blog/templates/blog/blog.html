@@ -27,7 +27,6 @@
                                 <h3><a href="#">{{item.title}}</a></h3>
                                 <div class="blog-meta-4">
                                     <ul>
-
                                         <li><a href="#">{{item.data_create|date:'F d, Y'}}</a></li>
                                     </ul>
                                 </div>
@@ -67,137 +66,14 @@
                             </button>
                         </form>
                     </div>
-                    <div class="sidebar-widget mt-60 mb-55">
-                        <h4 class="pro-sidebar-title2">Popular Post </h4>
-                        <div class="sidebar-post-wrap mt-30">
-                            <div class="single-sidebar-post">
-                                <div class="sidebar-post-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-sidebar-1.png" alt=""></a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4><a href="blog-details.html">Fahion Watch</a></h4>
-                                    <span>19 Augs, 2019 - by John </span>
-                                </div>
-                            </div>
-                            <div class="single-sidebar-post">
-                                <div class="sidebar-post-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-sidebar-2.png" alt=""></a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4><a href="blog-details.html">Old Streets</a></h4>
-                                    <span>19 Augs, 2019 - by John </span>
-                                </div>
-                            </div>
-                            <div class="single-sidebar-post">
-                                <div class="sidebar-post-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-sidebar-3.png" alt=""></a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4><a href="blog-details.html">New Suite</a></h4>
-                                    <span>19 Augs, 2019 - by John </span>
-                                </div>
-                            </div>
-                            <div class="single-sidebar-post">
-                                <div class="sidebar-post-img">
-                                    <a href="blog-details.html"><img src="assets/images/blog/blog-sidebar-4.png" alt=""></a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4><a href="blog-details.html">Beautiful Flower</a></h4>
-                                    <span>19 Augs, 2019 - by John </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    {% popular_post %}
                     {% categories %}
-
-
-                    <div class="sidebar-widget mb-55">
-                        <h4 class="pro-sidebar-title2">Tags </h4>
-                        <div class="sidebar-widget-tags-2 mt-25">
-                            <ul>
-                                <li><a href="#">Beauty,</a></li>
-                                <li><a href="#">Life Style,</a></li>
-                                <li><a href="#">Technology,</a></li>
-                                <li><a href="#">Design,</a></li>
-                                <li><a href="#">Fashion,</a></li>
-                                <li><a href="#">Furniture,</a></li>
-                                <li><a href="#">Travel,</a></li>
-                                <li><a href="#">Photography,</a></li>
-                                <li><a href="#">Motion Design</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-widget mb-65">
-                        <div class="blog-sidebar-banner">
-                            <a href="#"><img alt="" src="assets/images/blog/banner-blog.jpg"></a>
-                            <div class="blog-sidebar-content">
-                                <h3>Ad Banner </h3>
-                                <h5>info@example.com</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget mb-65">
-                        <div class="subscribe-form-5">
-                            <form class="validate subscribe-form-style-5" novalidate="" target="_blank"
-                                  name="mc-embedded-subscribe-form" method="post"
-                                  action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                                <div class="mc-form-5">
-                                    <input class="email" type="email" required=""
-                                           placeholder="Enter your email address..." name="EMAIL" value="">
-                                    <div class="mc-news-5" aria-hidden="true">
-                                        <input type="text" value="" tabindex="-1"
-                                               name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                    </div>
-                                    <div class="clear-5">
-                                        <input class="button" type="submit" name="subscribe" value="">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget">
-                        <div class="instagram-feed-thumb-5">
-                            <div id="Instafeed-5" class="instagram-wrap-5">
-                            </div>
-                        </div>
-                    </div>
+                    {% tags %}
                 </div>
             </div>
         </div>
     </div>
     <!-- blog area end -->
-    <div class="subscribe-area bg-black pt-70 pb-80">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3">
-                    <div class="subscribe-title">
-                        <h3>Stay in touch</h3>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div id="mc_embed_signup" class="subscribe-form subscribe-mrg-1">
-                        <form id="mc-embedded-subscribe-form" class="validate subscribe-form-style" novalidate=""
-                              target="_blank" name="mc-embedded-subscribe-form" method="post"
-                              action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
-                            <div id="mc_embed_signup_scroll" class="mc-form">
-                                <input class="email" type="email" required="" placeholder="Enter your email address..."
-                                       name="EMAIL" value="">
-                                <div class="mc-news" aria-hidden="true">
-                                    <input type="text" value="" tabindex="-1"
-                                           name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                </div>
-                                <div class="clear">
-                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe"
-                                           value="Subscribe">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'footer.html' %}
 </div>
 {% endblock %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'order.apps.OrderConfig',
     'payment.apps.PaymentConfig',
     'blog.apps.BlogConfig',
+    'taggit',
 
 
 ]

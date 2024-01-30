@@ -1,0 +1,13 @@
+<div class="sidebar-widget mt-60 mb-55">
+    <h4 class="pro-sidebar-title2">Popular Post </h4>
+    <div class="sidebar-post-wrap mt-30">
+        {% for item in post%}
+        <div class="single-sidebar-post">
+            <div class="sidebar-post-content">
+                <h4><a href="blog-details.html">{{item.title}}</a></h4>
+                <span>{{item.data_create|date:'F d, Y'}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

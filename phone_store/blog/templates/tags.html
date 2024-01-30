@@ -1,0 +1,14 @@
+<div class="sidebar-widget mb-55">
+    <h4 class="pro-sidebar-title2">Tags </h4>
+    <div class="sidebar-widget-tags-2 mt-25">
+        <ul>
+            {% for item in tags %}
+            {% if forloop.last%}
+            <li><a href="#">{{item.name}}</a></li>
+            {% else %}
+            <li><a href="#">{{item.name}},</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

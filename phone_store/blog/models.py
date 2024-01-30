@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.shortcuts import reverse
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -22,7 +23,9 @@ class Post(models.Model):
     content = models.TextField(verbose_name='Контент')
     data_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name='items', verbose_name='Категория')
-    image = models.ImageField(upload_to='blog', blank=True, null=True)
+    image = models.ImageField(upload_to='blog', blank=True, null=True, verbose_name='Изображение')
+    popular = models.BooleanField(default=False, verbose_name='Популярный пост')
+    tags = TaggableManager(verbose_name='Тэги')
 
     def __str__(self):
         return self.title
