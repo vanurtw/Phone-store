@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Categories
+from django.shortcuts import get_object_or_404
 from taggit.models import Tag
 from django.db.models import Q
 
@@ -21,3 +22,10 @@ def blog_home(request):
     context['post'] = post
 
     return render(request, 'blog/blog.html', context)
+
+
+def blog_details(request, slug):
+    context = {'chapter':'blog'}
+    post = get_object_or_404(Post, slug=slug)
+    context['post'] = post
+    return render(request, 'blog/blog-details.html', context)

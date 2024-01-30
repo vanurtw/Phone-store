@@ -24,7 +24,8 @@
                         <div style="margin-bottom: 20px;"><span class="categor">{{item.category}}</span></div>
                         <div class="blog-wrap-4">
                             <div class="blog-content-4">
-                                <h3><a href="#">{{item.title}}</a></h3>
+
+                                <h3><a href="{% url 'blog_details' item.slug %}">{{item.title}}</a></h3>
                                 <div class="blog-meta-4">
                                     <ul>
                                         <li><a href="#">{{item.data_create|date:'F d, Y'}}</a></li>
@@ -32,8 +33,9 @@
                                 </div>
                                 <p>{{item.content|truncatewords:'37'}}</p>
                                 <div class="blog-btn-2 btn-hover">
-                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
+                                    <a class="bg-black-hover" href="{% url 'blog_details' item.slug %}">Read More</a>
                                 </div>
+
                             </div>
                         </div>
                         {% endfor %}
