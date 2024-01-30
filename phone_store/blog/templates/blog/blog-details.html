@@ -61,13 +61,15 @@
                             </div>
                         </div>
                         <div class="next-prev-wrap">
+                            {% prev_post post as prev_post %}
                             <div class="next-wrap next-prev-conent">
-                                <h4><a href="#">Brighten Up <br>Dull Tired Skin</a></h4>
-                                <a href="#">Prev Post</a>
+                                <h4><a href="{{prev_post.get_absolute_url}}">{{prev_post}}</a></h4>
+                                <a href="{{prev_post.get_absolute_url}}">Prev Post</a>
                             </div>
+                            {% next_post post as next_post %}
                             <div class="prev-wrap next-prev-conent">
-                                <h4><a href="#">Beauty Pageants Should You <br> Let Your Teen Enter Them</a></h4>
-                                <a href="#">Next Post</a>
+                                <h4><a href="{{next_post.get_absolute_url}}">{{next_post}}</a></h4>
+                                <a href="{{next_post.get_absolute_url}}">Next Post</a>
                             </div>
                         </div>
                         <div class="blog-comments-area">
