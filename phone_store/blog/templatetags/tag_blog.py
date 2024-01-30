@@ -16,7 +16,8 @@ def popular_post():
     post = Post.objects.filter(popular=True)
     return {'post': post}
 
+
 @register.inclusion_tag('tags.html', name='tags')
 def tags():
     tags = Tag.objects.all()
-    return {'tags':tags}
+    return {'tags': tags}
