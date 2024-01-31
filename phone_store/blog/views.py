@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404
 from taggit.models import Tag
 from .tasks import share_post
 from django.db.models import Q
-from .forms import CommentForm
 
 
 # Create your views here.
@@ -12,7 +11,7 @@ def blog_home(request):
     context = {'chapter': 'blog'}
     if request.method == 'POST':
         search = request.POST.get('search')
-        post = Post.objects.filter(Q(title__icontains=search) | Q(tags__name__icontains=search))
+        post = Post.objects.filter(Q(title__icontains=search) | Q(tags__name__icontains=search)).distinct()
     else:
         category_slug = request.GET.get('category', None)
         if category_slug:

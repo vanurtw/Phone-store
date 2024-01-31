@@ -55,15 +55,6 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-                            <div class="blog-details-social">
-                                <ul>
-                                    <li>Share this post :</li>
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a class="pinterest" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                         <div class="next-prev-wrap">
                             {% prev_post post as prev_post %}
@@ -78,20 +69,22 @@
                             </div>
                         </div>
                         <div class="blog-comments-area">
-                            <h4 class="blog-details-title">4 Comment</h4>
+                            {% with post.comments.count as count %}
+                            {% if count %}
+                            <h4 class="blog-details-title">{{count}} {{count|pluralize:"Comment,Comments"}}</h4>
                             <div class="blog-comments-wrap">
                                 <div class="single-blog-bundel">
                                     {% for item in comments %}
                                     {% if not item.parent%}
                                     <div class="single-blog-comment mb-40">
                                         <div class="blog-comment-img">
-                                            <img alt="" src="assets/images/blog/user1.png">
+                                            <p>{{item.user}}</p>
+
                                         </div>
                                         <div class="blog-comment-content">
-                                            <p>“Theme is very flexible and easy to use. Perfect for us. Customer support
-                                                has been excellent and answered every question we've thrown at them</p>
+                                            <p>{{item.content}}</p>
                                             <div class="comment-name-reply">
-                                                <h5>35 mins ago, 15 November 2019 </h5>
+                                                <h5>{{item.data_create|date:'d F Y'}}</h5>
                                                 <a href="{% url 'blog_details' post.slug %}?post_parent={{item.id}}">Reply</a>
                                             </div>
                                         </div>
@@ -114,9 +107,9 @@
                                     {% endfor %}
                                     {% endfor %}
                                 </div>
-
-
                             </div>
+                            {% endif %}
+                            {% endwith %}
                         </div>
                         <div class="comment-form">
                             <h3>Leave a Reply </h3>
@@ -129,7 +122,8 @@
                                             <input type="hidden" name="parent" value="{{parent.id}}">
                                             <input type="hidden" name="post" value="{{post.id}}">
                                             {% if parent %}
-                                            <textarea placeholder="Your Comment" name="content" >{{parent.user}}, </textarea>
+                                            <textarea placeholder="Your Comment"
+                                                      name="content">{{parent.user}}, </textarea>
                                             {% else %}
                                             <textarea placeholder="Your Comment" name="content"></textarea>
                                             {% endif %}
@@ -166,6 +160,7 @@
                         <div class="subscribe-form-5">
                             <form class="validate subscribe-form-style-5" action="" method="post">
                                 {% csrf_token %}
+                                <p>Share this post:</p>
                                 <div class="mc-form-5">
                                     <input class="email" type="email" required=""
                                            placeholder="Enter your email address..." name="email" value="">
