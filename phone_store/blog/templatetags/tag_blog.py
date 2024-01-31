@@ -7,9 +7,9 @@ register = template.Library()
 
 
 @register.inclusion_tag('categories.html', name='categories')
-def category():
+def category(category_slug=None):
     categories = Categories.objects.all()
-    return {'categories': categories}
+    return {'categories': categories, 'category_slug':category_slug}
 
 
 @register.inclusion_tag('popular_post.html', name='popular_post')
@@ -19,9 +19,9 @@ def popular_post():
 
 
 @register.inclusion_tag('tags.html', name='tags')
-def tags():
+def tags(tag_slug=None):
     tags = Tag.objects.all()
-    return {'tags': tags}
+    return {'tags': tags, 'tag_slug':tag_slug}
 
 
 @register.simple_tag(name='next_post')

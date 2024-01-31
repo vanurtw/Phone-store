@@ -34,6 +34,7 @@ class ShopListView(ListView):
         # self.kwargs.get('type_product') == 'iphone':
         return PhoneProduct.published.all()
 
+
 # na zamenu
 class ProductDetailView(DetailView):
     template_name = 'store/product-details.html'

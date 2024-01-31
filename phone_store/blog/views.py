@@ -15,12 +15,15 @@ def blog_home(request):
     else:
         category_slug = request.GET.get('category', None)
         if category_slug:
+            context['category_slug'] = category_slug
             category = Categories.objects.get(slug=category_slug)
+
             post = category.items.all()
         else:
             tag_slug = request.GET.get('tag', None)
             if tag_slug:
                 post = Post.objects.filter(tags__slug__in=[tag_slug])
+                context['tag_slug'] = tag_slug
             else:
                 post = Post.objects.all()
     context['post'] = post

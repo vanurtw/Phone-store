@@ -78,7 +78,7 @@
                                     {% if not item.parent%}
                                     <div class="single-blog-comment mb-40">
                                         <div class="blog-comment-img">
-                                            <p>{{item.user}}</p>
+                                            <p style="color:#f0622e;font-size: 16px;">{{item.user}}</p>
 
                                         </div>
                                         <div class="blog-comment-content">
@@ -93,13 +93,12 @@
                                     {% for item_parent in item.parent_comments.all %}
                                     <div class="single-blog-comment child-blog-comment ml-80">
                                         <div class="blog-comment-img">
-                                            <img alt="" src="assets/images/blog/user2.png">
+                                            <p style="color:#f0622e;font-size: 16px;">{{item_parent.user}}</p>
                                         </div>
                                         <div class="blog-comment-content" style="margin-bottom:30px">
-                                            <p>“This theme is indeed a great purchase. Support center is also helpful
-                                                and quick to answer. No issues so far.”</p>
+                                            <p>{{item_parent.content}}</p>
                                             <div class="comment-name-reply">
-                                                <h5>35 mins ago, 15 November 2019</h5>
+                                                <h5>{{item_parent.data_create|date:'d F Y'}}</h5>
                                                 <a href="{% url 'blog_details' post.slug %}?post_parent={{item_parent.id}}">Reply</a>
                                             </div>
                                         </div>

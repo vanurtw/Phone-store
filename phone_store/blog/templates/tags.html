@@ -3,10 +3,10 @@
     <div class="sidebar-widget-tags-2 mt-25">
         <ul>
             {% for item in tags %}
-            {% if forloop.last%}
-            <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item.name}}</a></li>
+            {% if item.slug == tag_slug %}
+                <li><p style="color:#f0622e">{{item.name}}</p></li>
             {% else %}
-            <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item.name}},</a></li>
+                <li><a href="{% url 'blog_home' %}?tag={{item.slug}}">{{item.name}}</a></li>
             {% endif %}
             {% endfor %}
         </ul>

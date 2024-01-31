@@ -1,11 +1,17 @@
 <div class="sidebar-widget mt-60 mb-55">
     <h4 class="pro-sidebar-title2">Categories </h4>
     <div class="sidebar-widget-list-2 mt-25">
-        <ul>
-            <li><a href="{% url 'blog_home' %}">
-                All categories</a></li>
+        <ul>{% if category_slug %}
+            <li><a href="{% url 'blog_home' %}">All categories</a></li>
+            {% else %}
+            <li><a href="" style="color:#f0622e;pointer-events: none;">All categories</a></li>
+            {% endif %}
             {% for i in categories %}
+            {% if category_slug == i.slug %}
+            <li><a href="" style="color:#f0622e;pointer-events: none;">{{i.name}}</a> <span>({{i.items.count}})</span></li>
+            {% else %}
             <li><a href="{% url 'blog_home' %}?category={{i.slug}}">{{i.name}}</a> <span>({{i.items.count}})</span></li>
+            {% endif %}
             {% endfor %}
 
         </ul>

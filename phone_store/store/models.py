@@ -73,7 +73,7 @@ class AbstractProduct(models.Model):
     original_price = models.PositiveIntegerField(verbose_name='Цена')
     discount_price = models.PositiveIntegerField()
     manufacture = models.ForeignKey(Manufacture, verbose_name='Производитель', on_delete=models.CASCADE)
-    frame = models.CharField(max_length=50, verbose_name='Корпус')  # korpus
+    frame = models.CharField(max_length=50, verbose_name='Корпус')
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
     width = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Ширина')
     thickness = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Толщина')
