@@ -45,7 +45,7 @@ class Comment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     data_create = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    email = models.EmailField()
+
     parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

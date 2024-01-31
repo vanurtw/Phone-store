@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from taggit.models import Tag
 from .tasks import share_post
 from django.db.models import Q
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -32,8 +33,20 @@ def blog_details(request, slug):
     context = {'chapter': 'blog'}
     post = get_object_or_404(Post, slug=slug)
     if request.method == 'POST':
-        email = request.POST.get('email')
-        url_post = request.META['HTTP_REFERER']
-        share_post.delay(email, url_post)
+        email = request.POST.get('email', None)
+        if email:
+            url_post = request.META['HTTP_REFERER']
+            share_post.delay(email, url_post)
+        else:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.post = form.cleaned_data['post']
+                comment.user = request.user
+                comment.save()
+
+
+    form = CommentForm()
     context['post'] = post
+    context['form'] = form
     return render(request, 'blog/blog-details.html', context)

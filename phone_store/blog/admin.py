@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Post
+from .models import Categories, Post, Comment
 
 
 # Register your models here.
@@ -15,3 +15,8 @@ class CategoriesAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'data_create']
     prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
