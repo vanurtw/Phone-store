@@ -45,8 +45,7 @@ class Comment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     data_create = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='parent_comments')
 
     def __str__(self):
         return f'comment_{self.post.id}_{self.user}'

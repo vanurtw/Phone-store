@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Post, Categories
+from django.shortcuts import render, redirect
+from .models import Post, Categories, Comment
 from django.shortcuts import get_object_or_404
 from taggit.models import Tag
 from .tasks import share_post
@@ -32,21 +32,24 @@ def blog_home(request):
 def blog_details(request, slug):
     context = {'chapter': 'blog'}
     post = get_object_or_404(Post, slug=slug)
+    parent_id = request.GET.get('post_parent', None)
+    parent = None
+    if parent_id:
+        parent = get_object_or_404(Comment, id=parent_id)
+        context['parent'] = parent
     if request.method == 'POST':
         email = request.POST.get('email', None)
         if email:
             url_post = request.META['HTTP_REFERER']
             share_post.delay(email, url_post)
         else:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.post = form.cleaned_data['post']
-                comment.user = request.user
-                comment.save()
+            post_id = request.POST.get('post')
+            post = get_object_or_404(Post, id=post_id)
+            user = request.user
+            content = request.POST.get('content', None)
+            Comment.objects.create(post=post, user=user, content=content, parent=parent)
+            return redirect(to='blog_details', slug=slug)
 
-
-    form = CommentForm()
     context['post'] = post
-    context['form'] = form
+    context['comments'] = post.comments.all()
     return render(request, 'blog/blog-details.html', context)
