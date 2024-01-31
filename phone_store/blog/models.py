@@ -1,6 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.shortcuts import reverse
 from taggit.managers import TaggableManager
+
 
 # Create your models here.
 
@@ -31,8 +33,20 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog_details', kwargs={'slug':self.slug})
+        return reverse('blog_details', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    data_create = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    email = models.EmailField()
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f'comment_{self.post.id}_{self.user}'
