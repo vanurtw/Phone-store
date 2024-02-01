@@ -30,9 +30,9 @@
                                 <li><a href="{% url 'blog_home' %}">BLOG</a></li>
                                 {% endif %}
                                 {% if chapter == 'contact' %}
-                                <li><a href="" class="active">CONTACT</a></li>
+                                <li><a href="{% url 'contact' %}" class="active">CONTACT</a></li>
                                 {% else %}
-                                <li><a href="">CONTACT</a></li>
+                                <li><a href="{% url 'contact' %}">CONTACT</a></li>
                                 {% endif %}
                                 {% if user.is_authenticated %}
                                 <li><a href="">{{user|upper}}</a></li>|
