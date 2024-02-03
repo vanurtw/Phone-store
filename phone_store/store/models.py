@@ -89,8 +89,6 @@ class AbstractProduct(models.Model):
         abstract = True
 
 
-
-
 class ColorCountProduct(models.Model):
     ColorChoices = [
         ('BLACK', 'Black'),
@@ -165,3 +163,15 @@ class PhoneProduct(AbstractProduct):
 
 class LaptopProduct(AbstractProduct):
     pass
+
+
+class NewsletterSub(models.Model):
+    email = models.EmailField(unique=True, verbose_name='Почта')
+    date_create = models.DateTimeField(auto_now_add=True, blank=True)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'

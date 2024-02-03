@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories, Comments
+from .models import Manufacture, PhoneProduct, ColorCountProduct, Categories, Comments, NewsletterSub
 from .forms import SetQuantityGoods
 
 
@@ -65,3 +65,9 @@ class ColorCountProductAdmin(admin.ModelAdmin):
             form = SetQuantityGoods(initial={'_selected_action': request.POST.getlist('_selected_action')})
         return render(request, 'admin/set_count.html',
                       {'form': form, 'title': 'Установить колличество', })
+
+
+@admin.register(NewsletterSub)
+class NewsletterSubAdmin(admin.ModelAdmin):
+    list_display = ['email', 'date_create']
+    list_display_links = ['email']

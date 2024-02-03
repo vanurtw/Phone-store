@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import PhoneProduct
 from django.views.generic import ListView, DetailView
-from .forms import CommentForm
+from .forms import CommentForm, NewsletterSubForm
 from django.db.models import Count
 
 import csv
@@ -64,3 +64,11 @@ def product_details(request, product_slug):
                'color_product': color_product, 'form': form,
                'chapter': 'shop', 'prod': prod, 'memory_product': memory_product, 'related_products': related_products}
     return render(request, 'store/product-details.html', context=context)
+
+
+def new_letter_sub(request):
+    if request.method == 'POST':
+        form = NewsletterSubForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect(request.META['HTTP_REFERER'])
