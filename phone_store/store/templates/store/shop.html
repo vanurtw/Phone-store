@@ -41,7 +41,7 @@
             <div class="tab-content jump-3 pt-30">
                 <div id="shop-3" class="tab-pane active padding-55-row-col">
                     <div class="row">
-                        {% for product in products%}
+                        {% for product in page_obj %}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                             <div class="product-wrap mb-55">
                                 <div class="product-img mb-25">
@@ -87,11 +87,14 @@
                 </div>
                 <div class="pro-pagination-style text-center">
                     <ul>
-                        <li><a class="active" href="#">01</a></li>
-                        <li><a href="#">02</a></li>
-                        <li><a href="#">03</a></li>
-                        <li><a href="#">04</a></li>
-                        <li><a href="#">05</a></li>
+                        {% for i in paginator.page_range %}
+                        {% if i == page_obj.number %}
+                        <li><a class="active" href="{% url 'shop' %}?page={{i}}">{{i}}</a></li>
+                        {% else %}
+                        <li><a  href="{% url 'shop' %}?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

@@ -33,6 +33,7 @@ class PhoneProductAdmin(admin.ModelAdmin):
     exclude = ['create']
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
+    list_display_links = ['name']
     list_filter = ['create', 'colors__memory', 'colors__color', 'sale', 'new_product']
     list_display = ['id', 'name', 'sale', 'new_product']
 
@@ -42,6 +43,7 @@ class ColorCountProductAdmin(admin.ModelAdmin):
     list_display = ['product', 'color', 'memory', 'count', 'active']
     list_filter = ['product', 'color', 'memory']
     search_fields = ['product__name', 'color', 'memory']
+
     actions = ['set_quantity_goods']
 
     @admin.action(description='Установить колличество товара')

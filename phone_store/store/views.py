@@ -20,7 +20,8 @@ class HomeListView(ListView):
 
 class ShopListView(ListView):
     template_name = 'store/shop.html'
-    context_object_name = 'products'
+    # context_object_name = 'products'
+    paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ShopListView, self).get_context_data(**kwargs)

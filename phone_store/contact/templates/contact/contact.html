@@ -19,20 +19,14 @@
                         <div class="col-xl-9 col-lg-8 col-md-7">
                             <div class="contact-form-area">
                                 <h2>Submit an Offer</h2>
-                                <form id="contact-form" action="assets/mail-php/mail.php" method="post">
+                                <form id="contact-form" action="" method="post">
+                                    {% csrf_token %}
                                     <div class="row">
+                                        {%for i in form %}
                                         <div class="col-lg-12 col-md-12 col-12">
-                                            <input name="name" type="text" placeholder="Your name *">
+                                            {{i}}
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-12">
-                                            <input name="email" type="email" placeholder="Email address*">
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-12">
-                                            <input name="telephone" type="text" placeholder="Your Phone">
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-12">
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                        </div>
+                                        {% endfor %}
                                         <div class="col-lg-12 col-md-12 col-12">
                                             <button class="submit" type="submit">Send</button>
                                         </div>

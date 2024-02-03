@@ -71,7 +71,7 @@ class AbstractProduct(models.Model):
     image = models.ImageField(upload_to='store/', blank=True, null=True, verbose_name='Изображение')
     description = models.TextField(verbose_name='Описание')
     original_price = models.PositiveIntegerField(verbose_name='Цена')
-    discount_price = models.PositiveIntegerField()
+    discount_price = models.PositiveIntegerField(blank=True)
     manufacture = models.ForeignKey(Manufacture, verbose_name='Производитель', on_delete=models.CASCADE)
     frame = models.CharField(max_length=50, verbose_name='Корпус')
     height = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Высота')
@@ -88,9 +88,7 @@ class AbstractProduct(models.Model):
     class Meta:
         abstract = True
 
-    def save(self, *args, **kwargs):
-        self.discount_price = self.original_price * (1 - self.discount / 100)
-        return super(AbstractProduct, self).save(*args, **kwargs)
+
 
 
 class ColorCountProduct(models.Model):
@@ -112,7 +110,7 @@ class ColorCountProduct(models.Model):
     color = models.CharField(max_length=100, choices=ColorChoices, verbose_name='Цвет')
     memory = models.CharField(max_length=10, choices=MemoryChoices, verbose_name='Память')
     price = models.PositiveIntegerField(verbose_name='Цена')
-    price_discount = models.PositiveIntegerField()
+    price_discount = models.PositiveIntegerField(blank=True)
     count = models.IntegerField(verbose_name='Кол-во')
     product = models.ForeignKey('PhoneProduct', on_delete=models.CASCADE, related_name='colors')
     active = models.BooleanField(default=True)
@@ -150,10 +148,12 @@ class PhoneProduct(AbstractProduct):
     def __str__(self):
         return self.name
 
-    def save(self):
-        for i in self.colors.all():
-            i.save()
-        return super(PhoneProduct, self).save()
+    def save(self, *args, **kwargs):
+        self.discount_price = self.original_price * (1 - self.discount / 100)
+        return super(PhoneProduct, self).save(*args, **kwargs)
+        # for i in self.colors.all():
+        #     i.save()
+        # return super(PhoneProduct, self).save()
 
     def get_absolute_url(self):
         return reverse('product_details', kwargs={'product_slug': self.slug})
