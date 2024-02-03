@@ -23,8 +23,9 @@ def product_header(context):
 
 @register.inclusion_tag('product_header_content.html', takes_context=True)
 def product_header_content(context):
+    prod_com = context['product'].comments.all().select_related('user')
     return {'prod_header': context['prod_header'], 'product': context['product'],
-            'comment_count': context['comment_count'],
+            'comment_count': context['comment_count'],'prod_com':prod_com,
             'color_product': context['color_product'], 'form': context['form'], 'user': context['user']}
 
 

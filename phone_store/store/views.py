@@ -3,10 +3,7 @@ from .models import PhoneProduct
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, NewsletterSubForm
 from django.contrib import messages
-from django.db.models import Count
-
 import csv
-from django.http import HttpResponse
 
 
 # Create your views here.
@@ -43,8 +40,19 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     model = PhoneProduct
 
-    # def get_queryset(self):
-    # return PhoneProduct.published.get()
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        form = form.save(commit=False)
+        form.user = request.user
+        product_slug = kwargs['product_slug']
+        product = PhoneProduct.objects.get(slug=product_slug)
+        form.product = product
+        form.save()
+        return redirect(request.META['HTTP_REFERER'])
+
+    def get_queryset(self):
+        slug = self.kwargs['product_slug']
+        return PhoneProduct.published.filter(slug=slug)
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -65,7 +73,6 @@ class ProductDetailView(DetailView):
         context['prod'] = prod
         related_products = PhoneProduct.objects.all().order_by('?')[:4]
         context['related_products'] = related_products
-
         return context
 
 
