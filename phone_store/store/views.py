@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import PhoneProduct
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 from .forms import CommentForm, NewsletterSubForm
 from django.contrib import messages
-import csv
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -33,7 +33,6 @@ class ShopListView(ListView):
         return PhoneProduct.published.all()
 
 
-# na zamenu
 class ProductDetailView(DetailView):
     template_name = 'store/product-details.html'
     slug_url_kwarg = 'product_slug'
@@ -52,7 +51,7 @@ class ProductDetailView(DetailView):
 
     def get_queryset(self):
         slug = self.kwargs['product_slug']
-        return PhoneProduct.published.filter(slug=slug)
+        return PhoneProduct.published.annotate(avg_rating=Avg('comments__rating')).filter(slug=slug)
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -76,35 +75,12 @@ class ProductDetailView(DetailView):
         return context
 
 
-def product_details(request, product_slug):
-    product = PhoneProduct.published.get(slug=product_slug)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        form = form.save(commit=False)
-        form.user = request.user
-        form.product = product
-        form.save()
-        return redirect(request.META['HTTP_REFERER'])
-    form = CommentForm()
-    color_product = product.colors.all()
-    col = request.GET.get('color', color_product[0].color)
-    memory_product = color_product.filter(color__icontains=col)
-    memory = request.GET.get('memory', memory_product[0].memory)
-    prod_header = request.GET.get('prod-header', 'description')
-    prod = memory_product.get(memory=memory)
-    related_products = PhoneProduct.objects.all().order_by('?')[:4]
-    context = {'prod_header': prod_header, 'color': col.lower(), 'memory': memory, 'product': product,
-               'color_product': color_product, 'form': form,
-               'chapter': 'shop', 'prod': prod, 'memory_product': memory_product, 'related_products': related_products}
-    return render(request, 'store/product-details.html', context=context)
-
-
-def new_letter_sub(request):
-    if request.method == 'POST':
+class NewLetterSub(View):
+    def post(self, request, *args, **kwargs):
         form = NewsletterSubForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Вы подписались на нашу рыссылку')
         else:
             messages.error(request, 'Ошибка, такая почта уже есть')
-    return redirect(request.META['HTTP_REFERER'])
+        return redirect(request.META['HTTP_REFERER'])

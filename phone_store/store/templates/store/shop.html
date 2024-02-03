@@ -75,9 +75,9 @@
                                     <h4><a href="product-details.html">{{product.name}}</a></h4>
                                     <div class="product-price">
                                         {% if product.sale %}
-                                        <span class="old-price">${{product.original_price}}</span>
+                                        <span class="old-price">{{product.original_price}} ₽</span>
                                         {% endif %}
-                                        <span class="new-price">${{product.discount_price}}</span>
+                                        <span class="new-price">{{product.discount_price}} ₽</span>
                                     </div>
                                 </div>
                             </div>
