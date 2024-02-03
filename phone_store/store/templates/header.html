@@ -40,7 +40,13 @@
                                 {% else %}
                                 <li><a href="{% url 'login' %}">LOGIN</a></li>
                                 {% endif %}
+
                             </ul>
+                        {% if messages %}
+                            {% for i in messages %}
+                            <p class="{{i.tags}}">{{i}}</p>
+                            {% endfor %}
+                            {% endif %}
                         </nav>
                     </div>
                 </div>

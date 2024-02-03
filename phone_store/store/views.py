@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import PhoneProduct
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, NewsletterSubForm
+from django.contrib import messages
 from django.db.models import Count
 
 import csv
@@ -20,7 +21,6 @@ class HomeListView(ListView):
 
 class ShopListView(ListView):
     template_name = 'store/shop.html'
-    # context_object_name = 'products'
     paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -30,7 +30,7 @@ class ShopListView(ListView):
         return context
 
     def get_queryset(self):
-        if self.kwargs.get('type_product') == 'laptop':
+        if self.request.GET.get('type-product') == 'laptop':
             return []
         # self.kwargs.get('type_product') == 'iphone':
         return PhoneProduct.published.all()
@@ -41,6 +41,32 @@ class ProductDetailView(DetailView):
     template_name = 'store/product-details.html'
     slug_url_kwarg = 'product_slug'
     context_object_name = 'product'
+    model = PhoneProduct
+
+    # def get_queryset(self):
+    # return PhoneProduct.published.get()
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        request = self.request
+        product = context['product']
+        context['form'] = CommentForm()
+        color_product = product.colors.all()
+        context['color_product'] = color_product
+        col = request.GET.get('color', color_product[0].color)
+        context['color'] = col.lower()
+        context['prod_header'] = request.GET.get('prod-header', 'description')
+        memory_product = color_product.filter(color__icontains=col)
+        context['memory_product'] = memory_product
+        memory = request.GET.get('memory', memory_product[0].memory)
+        context['memory'] = memory
+        context['chapter'] = 'shop'
+        prod = memory_product.get(memory=memory)
+        context['prod'] = prod
+        related_products = PhoneProduct.objects.all().order_by('?')[:4]
+        context['related_products'] = related_products
+
+        return context
 
 
 def product_details(request, product_slug):
@@ -71,4 +97,7 @@ def new_letter_sub(request):
         form = NewsletterSubForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Вы подписались на нашу рыссылку')
+        else:
+            messages.error(request, 'Ошибка, такая почта уже есть')
     return redirect(request.META['HTTP_REFERER'])
