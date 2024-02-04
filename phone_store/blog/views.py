@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post, Categories, Comment
 from django.shortcuts import get_object_or_404
-from taggit.models import Tag
 from .tasks import share_post
 from django.db.models import Q
 
@@ -11,21 +10,21 @@ def blog_home(request):
     context = {'chapter': 'blog'}
     if request.method == 'POST':
         search = request.POST.get('search')
-        post = Post.objects.filter(Q(title__icontains=search) | Q(tags__name__icontains=search)).distinct()
+        post = Post.objects.filter(
+            Q(title__icontains=search) | Q(tags__name__icontains=search)).distinct().select_related('category')
     else:
         category_slug = request.GET.get('category', None)
         if category_slug:
             context['category_slug'] = category_slug
             category = Categories.objects.get(slug=category_slug)
-
             post = category.items.all()
         else:
             tag_slug = request.GET.get('tag', None)
             if tag_slug:
-                post = Post.objects.filter(tags__slug__in=[tag_slug])
+                post = Post.objects.filter(tags__slug__in=[tag_slug]).select_related('category')
                 context['tag_slug'] = tag_slug
             else:
-                post = Post.objects.all()
+                post = Post.objects.all().select_related('category')
     context['post'] = post
 
     return render(request, 'blog/blog.html', context)
@@ -33,7 +32,7 @@ def blog_home(request):
 
 def blog_details(request, slug):
     context = {'chapter': 'blog'}
-    post = get_object_or_404(Post, slug=slug)
+    post = Post.objects.filter(slug=slug).prefetch_related('tags').first()
     parent_id = request.GET.get('post_parent', None)
     parent = None
     if parent_id:
@@ -53,5 +52,5 @@ def blog_details(request, slug):
             return redirect(to='blog_details', slug=slug)
 
     context['post'] = post
-    context['comments'] = post.comments.all()
+    context['comments'] = post.comments.all().select_related('user').select_related('parent')
     return render(request, 'blog/blog-details.html', context)

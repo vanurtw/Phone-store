@@ -8,9 +8,9 @@
             {% endif %}
             {% for i in categories %}
             {% if category_slug == i.slug %}
-            <li><a href="" style="color:#f0622e;pointer-events: none;">{{i.name}}</a> <span>({{i.items.count}})</span></li>
+            <li><a href="" style="color:#f0622e;pointer-events: none;">{{i.name}}</a> <span>({{i.count}})</span></li>
             {% else %}
-            <li><a href="{% url 'blog_home' %}?category={{i.slug}}">{{i.name}}</a> <span>({{i.items.count}})</span></li>
+            <li><a href="{% url 'blog_home' %}?category={{i.slug}}">{{i.name}}</a> <span>({{i.count}})</span></li>
             {% endif %}
             {% endfor %}
 

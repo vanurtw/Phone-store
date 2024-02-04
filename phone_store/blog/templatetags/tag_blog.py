@@ -2,19 +2,21 @@ from django import template
 from blog.models import Categories, Post
 from taggit.models import Tag
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count
 
 register = template.Library()
 
 
 @register.inclusion_tag('categories.html', name='categories')
 def category(category_slug=None):
-    categories = Categories.objects.all()
+    categories = Categories.objects.annotate(count=Count('items'))
+    # categories = Categories.objects.all()
     return {'categories': categories, 'category_slug':category_slug}
 
 
 @register.inclusion_tag('popular_post.html', name='popular_post')
 def popular_post():
-    post = Post.objects.filter(popular=True)
+    post = Post.objects.filter(popular=True).values('title', 'data_create')
     return {'post': post}
 
 
