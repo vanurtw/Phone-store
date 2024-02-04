@@ -3,6 +3,7 @@ from .models import Post, Categories, Comment
 from django.shortcuts import get_object_or_404
 from .tasks import share_post
 from django.db.models import Q
+from django.views.generic import View, DetailView
 
 
 # Create your views here.
@@ -26,17 +27,38 @@ def blog_home(request):
             else:
                 post = Post.objects.all().select_related('category')
     context['post'] = post
-
     return render(request, 'blog/blog.html', context)
+
+
+class BlogPostDetail(DetailView):
+    template_name = 'blog/blog-details.html'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'post'
+
+    def get_object(self, queryset=None):
+        slug = self.kwargs.get('slug')
+        return Post.objects.get(slug=slug)
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogPostDetail, self).get_context_data(**kwargs)
+        context['chapter'] = 'blog'
+        context['parent'] = None
+        request = self.request
+        parent_id = request.GET.get('post_parent', None)
+        if parent_id:
+            context['parent'] = Comment.objects.filter(id=parent_id).select_related('user').first()
+        context['comments'] = context['post'].comments.all().select_related('user', 'parent')
+        return context
 
 
 def blog_details(request, slug):
     context = {'chapter': 'blog'}
-    post = Post.objects.filter(slug=slug).prefetch_related('tags').first()
+    post = Post.objects.get(slug=slug)
     parent_id = request.GET.get('post_parent', None)
     parent = None
     if parent_id:
-        parent = get_object_or_404(Comment, id=parent_id)
+        parent = Comment.objects.filter(id=parent_id).select_related('user').first()
+
         context['parent'] = parent
     if request.method == 'POST':
         email = request.POST.get('email', None)
@@ -52,5 +74,6 @@ def blog_details(request, slug):
             return redirect(to='blog_details', slug=slug)
 
     context['post'] = post
-    context['comments'] = post.comments.all().select_related('user').select_related('parent')
+    context['comments'] = post.comments.all().select_related('user', 'parent')
+    # context['comments']  = Comment.objects.filter(post=post).select_related('user', 'parent')
     return render(request, 'blog/blog-details.html', context)
