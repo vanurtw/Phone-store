@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from .tasks import share_post
 from django.db.models import Q
 from django.views.generic import View, DetailView
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -26,7 +27,12 @@ def blog_home(request):
                 context['tag_slug'] = tag_slug
             else:
                 post = Post.objects.all().select_related('category')
-    context['post'] = post
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(post, 4)
+    context['post'] = paginator.get_page(page)
+    context['paginator'] = paginator
+
     return render(request, 'blog/blog.html', context)
 
 

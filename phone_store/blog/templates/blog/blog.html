@@ -42,12 +42,13 @@
 
 
                         <div class="pro-pagination-style">
-                            <ul>
-                                <li><a class="active" href="#">01</a></li>
-                                <li><a href="#">02</a></li>
-                                <li><a href="#">03</a></li>
-                                <li><a href="#">04</a></li>
-                                <li><a href="#">05</a></li>
+                            <ul>{% for i in paginator.page_range %}
+                                {% if i == post.number %}
+                                <li><a class="active" href="{% url 'blog_home' %}?page={{i}}">{{i}}</a></li>
+                                {% else %}
+                                <li><a  href="{% url 'blog_home' %}?page={{i}}">{{i}}</a></li>
+                                {% endif %}
+                                {% endfor %}
                             </ul>
                         </div>
 
