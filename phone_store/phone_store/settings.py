@@ -146,8 +146,8 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'phone_store.authentication.EmailBackend',
                            ]
 
-EMAIL_HOST_USER = 'vanuartw@mail.ru'
-EMAIL_HOST_PASSWORD = 'wadawdaw2rragsgsegseges'
+EMAIL_HOST_USER = 'vawdanawuwadawdawa@aawdsifffgl.ru'
+EMAIL_HOST_PASSWORD = 'wadawdaw2rrwafawfawsafagsgsegseges'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 EMAIL_HOST = 'smtp.mail.ru'
