@@ -147,7 +147,7 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            ]
 
 EMAIL_HOST_USER = 'vanuartw@mail.ru'
-EMAIL_HOST_PASSWORD = '1TJNJ3kpfPwetP6sqZqX'
+EMAIL_HOST_PASSWORD = 'wadawdaw2rragsgsegseges'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 EMAIL_HOST = 'smtp.mail.ru'
