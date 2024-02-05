@@ -5,6 +5,7 @@ from .tasks import share_post
 from django.db.models import Q
 from django.views.generic import View, DetailView
 from django.core.paginator import Paginator
+from .tasks import reply_comment
 
 
 # Create your views here.
@@ -57,6 +58,7 @@ class BlogPostDetail(DetailView):
             user = request.user
             content = request.POST.get('content', None)
             Comment.objects.create(post=post, user=user, content=content, parent=parent)
+            reply_comment.delay(request.user.email)
             return redirect(to='blog_details', slug=slug)
 
     def get_object(self, queryset=None):
