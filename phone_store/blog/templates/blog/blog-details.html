@@ -109,6 +109,7 @@
                             {% endif %}
                             {% endwith %}
                         </div>
+                        {% if user.is_authenticated %}
                         <div class="comment-form">
                             <h3>Leave a Reply </h3>
                             <p>Your email address will not be published. Required fields are marked *</p>
@@ -135,6 +136,7 @@
 
                             </form>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
 
