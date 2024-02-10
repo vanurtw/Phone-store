@@ -6,7 +6,8 @@ from store.models import ColorCountProduct
 from django.db.models import F
 from django.contrib import messages
 from .tasks import order_created
-
+import csv
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -51,5 +52,4 @@ def order_user(request):
 
     context = {'form': form}
     return render(request, 'order/checkout.html', context)
-
 
