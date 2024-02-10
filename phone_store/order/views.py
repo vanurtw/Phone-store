@@ -8,6 +8,7 @@ from django.contrib import messages
 from .tasks import order_created
 
 
+
 # Create your views here.
 
 
@@ -50,3 +51,5 @@ def order_user(request):
 
     context = {'form': form}
     return render(request, 'order/checkout.html', context)
+
+
