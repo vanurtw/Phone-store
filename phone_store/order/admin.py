@@ -11,7 +11,7 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ['user', 'first_name']
     actions = ['upload_csv']
 
-    @admin.action(description='upload_csv')
+    @admin.action(description='Сохранить в csv файл')
     def upload_csv(self, request, queryset):
         with open('cart.csv', 'w', encoding='utf-8') as f:
             writer = csv.writer(f)

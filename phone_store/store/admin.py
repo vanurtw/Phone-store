@@ -59,7 +59,7 @@ class ColorCountProductAdmin(admin.ModelAdmin):
                     item.count = count
                     item.save()
                     score += 1
-                self.message_user(request, f'Для {score} выбранных товаров товаров, установлено колличество {count}')
+                self.message_user(request, f'Для {score} выбранных товаров, установлено колличество {count}')
                 return HttpResponseRedirect(request.get_full_path())
         if not form:
             form = SetQuantityGoods(initial={'_selected_action': request.POST.getlist('_selected_action')})
