@@ -162,3 +162,10 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51OHKGHA6Z3RPpTyQsp4ahqoTF2vQMnY90ywjOSXrKzmSH
 STRIPE_SECRET_KEY = 'sk_test_51OHKGHA6Z3RPpTyQAzUmFBOVC617HlB7beIop0S228G0twmVbmYpbEjtgz22rfHRfnYahVTYjh7dfcdtkZWlfXbo00ZWes5Ai4'
 STRIPE_API_VERSION = '2022-08-01'
 STRIPE_WEBHOOK_SECRET = 'whsec_7169049f08393468ac73e5b57f19404d5468c25e56b2216239f2c5a6f85ee8ce'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.db.models import Avg
 
 
+
 # Create your views here.
 
 class HomeListView(ListView):

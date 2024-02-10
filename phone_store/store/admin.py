@@ -20,6 +20,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(Comments)
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'rating', 'data_create']
+    list_filter = ['product', 'rating', 'data_create']
 
 
 class ColorCountProductInline(admin.StackedInline):
@@ -36,6 +37,15 @@ class PhoneProductAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     list_filter = ['create', 'colors__memory', 'colors__color', 'sale', 'new_product']
     list_display = ['id', 'name', 'sale', 'new_product']
+    actions = ['active_product', 'not_active_product']
+
+    @admin.action(description='Сделать активным')
+    def active_product(self, request, queryset):
+        queryset.update(active=True)
+
+    @admin.action(description='Сделать не активным')
+    def not_active_product(self, request, queryset):
+        queryset.update(active=False)
 
 
 @admin.register(ColorCountProduct)

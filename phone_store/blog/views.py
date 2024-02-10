@@ -6,9 +6,11 @@ from django.db.models import Q
 from django.views.generic import View, DetailView
 from django.core.paginator import Paginator
 from .tasks import reply_comment
+from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
+@cache_page(60*10)
 def blog_home(request):
     context = {'chapter': 'blog'}
     if request.method == 'POST':

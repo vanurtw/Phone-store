@@ -13,13 +13,14 @@ from .forms import CategorySetPostForm
 class CategoriesAdmin(admin.ModelAdmin):
     list_display = ['name', 'data_create', 'slug']
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ['name']
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'data_create']
     prepopulated_fields = {'slug': ('title',)}
-    list_filter = ['category']
+    list_filter = ['category', 'data_create']
     actions = ['set_catery_post']
 
     @admin.action(description='Установить категорию')
@@ -44,4 +45,4 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'post', 'data_create']
-    list_filter = ['user', 'post__title', 'data_create']
+    list_filter = ['user', 'post', 'data_create']

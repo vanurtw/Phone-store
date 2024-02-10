@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load tags_load %}
+{% load cache %}
 
 
 {% block content %}
@@ -7,6 +8,7 @@
 <div class="main-wrapper">
     <div class="shop-area section-padding-2 pb-110">
         <div class="container-fluid">
+            {% cache 100 siberian product.name  color memory %}
             <div class="row">
                 <div class="col-xl-6 col-lg-12">
                     <div class="product-details-tab">
@@ -146,6 +148,7 @@
                     </div>
                 </div>
             </div>
+            {% endcache %}
         </div>
     </div>
 
